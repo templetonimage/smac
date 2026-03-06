@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMAC Round 2 — Social Media Accountability Challenge</title>
+<meta name="description" content="Join the Social Media Accountability Challenge Round 2. 90 days of structured posting, community accountability, and cash prizes. Only $35 — or $100 to lock in Rounds 2, 3 & 4.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0d0d0d;
+    --white:   #faf9f7;
+    --offwhite:#f2f0eb;
+    --gold:    #c9a84c;
+    --gold-lt: #e8c97a;
+    --gold-dk: #9e7c2e;
+    --ink:     #1a1a1a;
+    --muted:   #6b6560;
+    --border:  #e0dbd2;
+    --section-pad: 100px 60px;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── UTILITY ── */
+  .container { max-width: 1040px; margin: 0 auto; }
+  .gold { color: var(--gold); }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 3px;
+    border: 1px solid var(--gold);
+    color: var(--gold-dk);
+    background: rgba(201,168,76,0.07);
+    margin-bottom: 28px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(250,249,247,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--ink);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+    border: 1.5px solid var(--ink);
+  }
+  .nav-cta:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+  .nav-cta .nav-arrow { color: var(--gold-dk); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 120px 60px 100px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::after {
+    content: 'SMAC';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 320px;
+    color: rgba(201,168,76,0.06);
+    letter-spacing: 10px;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow-line {
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+  }
+  .hero-eyebrow-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold-dk);
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 9vw, 108px);
+    line-height: 0.93;
+    letter-spacing: 2px;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 820px;
+    position: relative;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 44px;
+    font-weight: 300;
+    line-height: 1.75;
+    position: relative;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .cta-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; position: relative; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-dk); transform: translateY(-1px); }
+  .btn-primary::after { content: ' →'; }
+  .btn-ghost {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+  .hero-proof-bar {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-stat {}
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-family: 'DM Mono', monospace;
+  }
+  .price-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold-dk);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+  .price-pill::before { content: '●'; font-size: 8px; }
+
+  /* ── PROBLEM ── */
+  .problem {
+    padding: var(--section-pad);
+    background: var(--ink);
+    color: var(--white);
+  }
+  .problem .tag { border-color: rgba(201,168,76,0.4); color: var(--gold-lt); background: rgba(201,168,76,0.08); }
+  .problem h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: 1.5px;
+    line-height: 1.05;
+    margin-bottom: 56px;
+    max-width: 700px;
+  }
+  .problem h2 em { font-style: normal; color: var(--gold); }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .problem-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 28px;
+  }
+  .problem-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .problem-card h4 { font-size: 17px; font-weight: 600; margin-bottom: 10px; color: #fff; }
+  .problem-card p { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.75; }
+  .problem-villain {
+    grid-column: 1 / -1;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .villain-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .problem-villain p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+  .problem-villain strong { color: var(--gold-lt); }
+
+  /* ── GUIDE ── */
+  .guide {
+    padding: var(--section-pad);
+    border-bottom: 1px solid var(--border);
+  }
+  .guide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .guide h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 52px);
+    letter-spacing: 1px;
+    line-height: 1.05;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .guide p { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+  .guide p strong { color: var(--ink); }
+  .cred-list { display: flex; flex-direction: column; gap: 12px; }
+  .cred-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--offwhite);
+    transition: border-color 0.2s;
+  }
+  .cred-item:hover { border-color: var(--gold); }
+  .cred-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .cred-text strong { display: block; font-size: 15px; color: var(--ink); margin-bottom: 3px; }
+  .cred-text span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── PLAN ── */
+  .plan {
+    padding: var(--section-pad);
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+  }
+  .plan h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .plan-sub { color: var(--muted); margin-bottom: 52px; font-size: 17px; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .step {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 28px;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .step:hover { border-color: var(--gold); box-shadow: 0 4px 24px rgba(201,168,76,0.1); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .step h4 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--ink); }
+  .step p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+
+  /* ── MONTH BREAKDOWN ── */
+  .months {
+    padding: var(--section-pad);
+    border-bottom: 1px solid var(--border);
+  }
+  .months h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .months-sub { color: var(--muted); margin-bottom: 48px; font-size: 17px; }
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .month-card {
+    border: 1px solid var(--border);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .month-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+  }
+  .month-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 10px;
+  }
+  .month-card h4 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--ink); }
+  .month-card p { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+  .month-req {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 8px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink);
+    letter-spacing: 0.5px;
+  }
+  .month-req strong { color: var(--gold-dk); }
+
+  /* ── SOCIAL PROOF ── */
+  .proof {
+    padding: var(--section-pad);
+    background: var(--ink);
+    color: var(--white);
+  }
+  .proof .tag { border-color: rgba(201,168,76,0.4); color: var(--gold-lt); background: rgba(201,168,76,0.08); }
+  .proof h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 48px;
+  }
+  .proof h2 em { font-style: normal; color: var(--gold); }
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+  .testimonial {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: border-color 0.2s;
+  }
+  .testimonial:hover { border-color: rgba(201,168,76,0.4); }
+  .t-quote {
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 14px;
+    font-family: Georgia, serif;
+  }
+  .testimonial p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .t-author { font-size: 14px; font-weight: 600; color: #fff; }
+  .t-role { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  .stat-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 28px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── OBJECTIONS ── */
+  .objections {
+    padding: var(--section-pad);
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+  }
+  .objections h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .obj-sub { color: var(--muted); margin-bottom: 44px; font-size: 17px; }
+  .faq { display: flex; flex-direction: column; gap: 2px; }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 22px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--gold);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a {
+    padding: 0 28px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+  }
+  .faq-item.open .faq-a {
+    max-height: 300px;
+    padding: 0 28px 24px;
+  }
+
+  /* ── FAILURE / STAKES ── */
+  .stakes {
+    padding: 72px 60px;
+    background: #f5f0e8;
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+  }
+  .stakes-inner {
+    max-width: 720px;
+  }
+  .stakes h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: 1px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .stakes p { font-size: 16px; color: #5a5248; line-height: 1.8; }
+  .stakes strong { color: var(--ink); }
+
+  /* ── FINAL CTA ── */
+  .cta-final {
+    padding: 120px 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-final h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 8vw, 96px);
+    letter-spacing: 2px;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .cta-final h2 em { font-style: normal; color: var(--gold); }
+  .cta-final p {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 16px;
+    line-height: 1.75;
+    position: relative;
+  }
+  .cta-price-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gold-dk);
+    margin-bottom: 36px;
+    position: relative;
+    text-transform: uppercase;
+  }
+  .cta-final .btn-primary {
+    font-size: 18px;
+    padding: 20px 52px;
+    position: relative;
+  }
+  .cta-fine {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--muted);
+    position: relative;
+  }
+  .cta-fine a { color: var(--gold-dk); text-decoration: underline; text-underline-offset: 3px; }
+  .giveaway-box {
+    display: inline-flex;
+    gap: 32px;
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 32px;
+    margin: 36px auto 0;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .giveaway-item { text-align: center; }
+  .giveaway-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .giveaway-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Mono', monospace; }
+  .giveaway-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison {
+    padding: var(--section-pad);
+    background: var(--ink);
+    color: var(--white);
+  }
+  .comparison .tag { border-color: rgba(201,168,76,0.4); color: var(--gold-lt); background: rgba(201,168,76,0.08); }
+  .comparison h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .comparison h2 em { font-style: normal; color: var(--gold); }
+  .comparison-sub { color: rgba(255,255,255,0.45); margin-bottom: 48px; font-size: 16px; }
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .comp-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.4);
+  }
+  .comp-table th.smac-col {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+  .comp-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.6);
+    vertical-align: middle;
+  }
+  .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .comp-table td.feature-name { color: rgba(255,255,255,0.85); font-weight: 500; font-size: 14px; }
+  .comp-table td.smac-col { color: var(--white); font-weight: 600; }
+  .comp-table td:not(.smac-col):not(.feature-name) { color: rgba(255,255,255,0.85); }
+  .check { color: #4caf7d; font-size: 18px; }
+  .cross { color: #e05050; font-size: 18px; }
+  .partial { color: var(--gold); font-size: 14px; }
+  .smac-highlight { background: rgba(201,168,76,0.06); border-left: 2px solid var(--gold); }
+
+  /* ── PRICING CARDS ── */
+  .pricing {
+    padding: var(--section-pad);
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .pricing-sub { color: var(--muted); margin-bottom: 48px; font-size: 17px; }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 760px;
+  }
+  .pricing-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 36px 32px;
+    position: relative;
+  }
+  .pricing-card.featured {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pricing-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .pricing-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--ink);
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pricing-amount sup { font-size: 28px; vertical-align: super; }
+  .pricing-per-month {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold-dk);
+    font-family: 'DM Sans', sans-serif;
+    margin-top: -8px;
+    margin-bottom: 6px;
+  }
+  .pricing-period { font-size: 13px; color: var(--muted); margin-bottom: 24px; font-family: 'DM Mono', monospace; }
+  .pricing-desc { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+  .pricing-features { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .pricing-features li { font-size: 14px; color: var(--ink); display: flex; align-items: flex-start; gap: 10px; }
+  .pricing-features li::before { content: '✓'; color: var(--gold-dk); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pricing-cta {
+    display: block;
+    text-align: center;
+    padding: 14px 24px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .pricing-cta.primary { background: var(--ink); color: var(--white); }
+  .pricing-cta.primary:hover { background: var(--gold-dk); }
+  .pricing-cta.featured-btn { background: var(--gold); color: var(--ink); }
+  .pricing-cta.featured-btn:hover { background: var(--gold-dk); color: var(--white); }
+  .savings-tag {
+    display: inline-block;
+    background: rgba(76,175,125,0.12);
+    border: 1px solid rgba(76,175,125,0.3);
+    color: #2d7a55;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 12px;
+  }
+  .revenue-note {
+    margin-top: 40px;
+    padding: 20px 24px;
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    max-width: 760px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .revenue-note strong { color: var(--ink); }
+
+  @media (max-width: 768px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .comp-table { font-size: 13px; }
+    .comp-table th, .comp-table td { padding: 12px 12px; }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--white);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--muted);
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-underline-offset: 3px; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero, .stakes, .cta-final, footer { padding-left: 24px; padding-right: 24px; }
+    .hero { padding-top: 72px; padding-bottom: 64px; }
+    .hero::after { display: none; }
+    .problem, .guide, .plan, .months, .proof, .objections { padding: 64px 24px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .guide-inner { grid-template-columns: 1fr; gap: 40px; }
+    .steps { grid-template-columns: 1fr; gap: 16px; }
+    .month-grid { grid-template-columns: 1fr; }
+    .testimonials { grid-template-columns: 1fr; }
+    .stat-row { flex-wrap: wrap; }
+    .stat-item { flex: 1 1 calc(50% - 1px); }
+    .hero-proof-bar { gap: 28px; }
+    .giveaway-box { gap: 20px; }
+    .giveaway-divider { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SMAC <span>2026</span></div>
+  <div class="nav-links">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#compare">Compare</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <!-- ✅ REPLACE THE # BELOW WITH YOUR STRIPE LINK TOO -->
+    <a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="nav-cta">Join Round 2 <span class="nav-arrow">→</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <div class="hero-eyebrow-text">Round 1 Was Free · Round 2 Starts March 2026</div>
+    </div>
+    <div class="price-pill">Spots Limited · Closes March 14</div>
+    <h1>Stop Starting Over.<br><em>Start Showing Up.</em></h1>
+    <p class="hero-sub">
+      The <strong>Social Media Accountability Challenge 2026</strong> turns sporadic posting into a real, consistent habit inside a supportive community of fellow creatives — in just 90 days. Built for solo founders who know they should be showing up online but keep falling off by themselves.
+    </p>
+    <div class="cta-group">
+      <a href="#join" class="btn-primary">Join Round 2</a>
+      <a href="#how-it-works" class="btn-ghost">See how it works ↓</a>
+    </div>
+    <div class="hero-proof-bar">
+      <div class="hero-stat">
+        <div class="hero-stat-num">60+</div>
+        <div class="hero-stat-label">Round 1 Members (Free)</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">90</div>
+        <div class="hero-stat-label">Days of Accountability</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">$150</div>
+        <div class="hero-stat-label">Cash Prizes Given Away in Round 1</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">1,000+</div>
+        <div class="hero-stat-label">Posts Individually Verified</div>
+      </div>
+    </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="tag">The Problem</div>
+    <h2>You Know What to Do.<br><em>You're Just Not Doing It.</em></h2>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-card-label">External</div>
+        <h4>The Inconsistency Cycle</h4>
+        <p>You post when you remember, go quiet for weeks, then scramble back. Your strategy is "when I have time" — which means almost never.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-label">Internal</div>
+        <h4>The Quiet Guilt</h4>
+        <p>Every silent week feels like falling behind. You watch other founders building audiences and wonder why you can't stay consistent. It's not a content problem. It's an accountability problem.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-label">Philosophical</div>
+        <h4>Your Work Deserves to Be Seen</h4>
+        <p>You built your business to make an impact. If nobody sees your work, none of it matters. Showing up consistently isn't vanity — it's the foundation of growth.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-label">The Truth</div>
+        <h4>It Takes 3–6 Months for Traction, Minimum</h4>
+        <p>And 1–3 years to see a real, sustained difference. Every founder who burns out at month two loses the compounding effect that kicks in at month four. SMAC keeps you in it long enough to win — plus the option to continue.</p>
+      </div>
+      <div class="problem-villain">
+        <div class="villain-icon">⚡</div>
+        <p><strong>The villain isn't laziness. It's isolation.</strong> When you're a solo founder with no team, no deadlines, and no one watching — consistency is the first thing to go. SMAC fixes the environment, not the willpower. And right now, it's the only active program of its kind built specifically for solopreneurs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section class="plan" id="how-it-works">
+  <div class="container">
+    <div class="tag">The Plan</div>
+    <h2>Here's How It Works</h2>
+    <p class="plan-sub">Three steps. No overwhelm. Just show up.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Register for Round 2</h4>
+        <p>One payment. Three months of accountability, community, coaching, and cash prize eligibility. Secure your spot before Round 2 closes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Hit Your Weekly Minimum</h4>
+        <p>Posting requirements ramp up each month — starting easy and building your habit progressively. Miss a week? Grace periods keep you in the game.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Grow & Win</h4>
+        <p>All-Stars who hit requirements every week are entered to win. Finishers who make it to the end are entered too. Two ways to win, so just keep showing up. Consistency is rewarded — literally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section class="guide">
+  <div class="container">
+    <div class="guide-inner">
+      <div>
+        <div class="tag">Why SMAC Works</div>
+        <h2>You Don't Need More Tips. You Need Someone in Your Corner.</h2>
+        <p>SMAC was built by <strong>Nate Templeton</strong> — a fellow solopreneur and full-time videographer who got tired of watching talented founders disappear into silence, but was also searching for accountability for himself.</p>
+        <p>Round 1 ran <strong>FREE</strong> from December 2025 through February 2026 and brought together 60+ founders. They showed up. They posted. They proved that structure is the missing piece — not motivation.</p>
+        <p>Round 2 lives inside an <strong>active Instagram Group Chat</strong> where members post wins, cheer each other on, and hold each other accountable in real time. When your community engages with your content, the algorithm notices — and so does your audience. More engagement means more reach. More reach means more opportunities.</p>
+        <p>Nate will be in the trenches with you every step of the way.</p>
+      </div>
+      <div class="cred-list">
+        <div class="cred-item">
+          <div class="cred-icon">💬</div>
+          <div class="cred-text">
+            <strong>Active Instagram Group Chat</strong>
+            <span>Real-time cheering, engagement, and accountability from 60+ fellow founders</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🏁</div>
+          <div class="cred-text">
+            <strong>60+ Founders Completed Round 1</strong>
+            <span>Real people, real businesses — proof the structure holds</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🔍</div>
+          <div class="cred-text">
+            <strong>Every Post Individually Verified</strong>
+            <span>Nate personally visits your profile to verify the date and time of every post during your Round. No self-reporting, no honor system — a premium level of real accountability that no other challenge offers.</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🎯</div>
+          <div class="cred-text">
+            <strong>Built by a Solopreneur, for Solopreneurs</strong>
+            <span>No corporate playbook. No fluff. Just accountability that works.</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">💡</div>
+          <div class="cred-text">
+            <strong>Content Strategy Education Included</strong>
+            <span>Learn what to post, when to post it, and how to read what your audience actually responds to — so your content works smarter over time</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🎁</div>
+          <div class="cred-text">
+            <strong>Bigger Prizes Than Round 1</strong>
+            <span>Round 2 giveaways are increasing — and the more members who join, the bigger the prizes grow for everyone</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="comparison" id="compare">
+  <div class="container">
+    <div class="tag">Why SMAC Wins</div>
+    <h2>Nothing Else Does <em>This.</em></h2>
+    <p class="comparison-sub">We looked at every alternative. The closest competitors aren't even running right now — making SMAC the only active social media accountability challenge built for solopreneurs.</p>
+    <div style="overflow-x:auto;">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="width:26%">Feature</th>
+          <th class="smac-col" style="width:15%">SMAC 2026</th>
+          <th style="width:15%">Reese Hopper<br><span style="font-size:10px;opacity:0.5;">15-Day Creative Challenge · $59 (not currently active)</span></th>
+          <th style="width:15%">Mattie James<br><span style="font-size:10px;opacity:0.5;">5-Day Consistency Challenge · $47 (not currently active)</span></th>
+          <th style="width:15%">Accountability Communities<br><span style="font-size:10px;opacity:0.5;">Creatives Roundtable $95/mo · FLOWN $332/6wk</span></th>
+          <th style="width:14%">Group Coaching<br><span style="font-size:10px;opacity:0.5;">$500–$2,000+</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature-name">Duration</td>
+          <td class="smac-col smac-highlight">90 days</td>
+          <td>15 days</td>
+          <td>5 days</td>
+          <td>Ongoing monthly</td>
+          <td>Varies</td>
+        </tr>
+        <tr>
+          <td class="feature-name">Ongoing accountability after challenge ends</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Focused on social media growth</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="partial">Sometimes</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Built specifically for solopreneurs</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="partial">Partly</span></td>
+          <td><span class="partial">Partly</span></td>
+          <td><span class="partial">Varies</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Posting requirements that ramp up</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Content strategy education included</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span> w/ sources</td>
+          <td><span class="partial">Creative focus</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Active peer community</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="partial">VIP only</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Cash prizes for participants</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span> Grows w/ membership</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Individual post verification</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span> Every post</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Price</td>
+          <td class="smac-col smac-highlight" style="color:var(--gold-lt);">Two lattes a month · Active Now</td>
+          <td>$59 · Not currently active</td>
+          <td>$47 · Not currently active</td>
+          <td>$95/mo or $332/6wks</td>
+          <td>$500–$2,000+</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;">Comparison based on publicly available information as of March 2026. Some competitor programs are not currently active. Creatives Roundtable pricing sourced from creativesroundtable.com. FLOWN 6-week sprint pricing sourced from flown.com.</p>
+  </div>
+</section>
+
+<!-- MONTH BREAKDOWN -->
+<section class="months">
+  <div class="container">
+    <div class="tag">Round 2 Roadmap</div>
+    <h2>Your 90-Day Plan</h2>
+    <p class="months-sub">Requirements ramp up each month so you build the habit before you build the volume.</p>
+    <div class="month-grid">
+      <div class="month-card">
+        <div class="month-label">Month 1 · March</div>
+        <h4>Build the Habit</h4>
+        <p>Ease back in. Grace period until March 14. Get oriented, reconnect with the community, and find your rhythm. One post a week is the bar — clear it every time.</p>
+        <div class="month-req">Min: <strong>1 post / week</strong></div>
+      </div>
+      <div class="month-card">
+        <div class="month-label">Month 2 · April</div>
+        <h4>Pick Up the Pace</h4>
+        <p>Double your output. Start learning what your audience responds to and refine your content mix. This is where your strategy starts to take shape.</p>
+        <div class="month-req">Min: <strong>2 posts / week</strong></div>
+      </div>
+      <div class="month-card">
+        <div class="month-label">Month 3 · May</div>
+        <h4>Full Send</h4>
+        <p>This is where compound consistency kicks in. Three months of showing up starts to look like real audience growth. Finish strong — All-Star status is on the line.</p>
+        <div class="month-req">Min: <strong>3 posts / week</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof" id="results">
+  <div class="container">
+    <div class="tag">Round 1 Results</div>
+    <h2>They Showed Up.<br><em>So Can You.</em></h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="t-quote">"</div>
+        <p>Add a real quote from a Round 1 member here — ideally a specific result. E.g. "I posted more in January than I had in the past 6 months combined."</p>
+        <div class="t-author">[Member Name]</div>
+        <div class="t-role">SMAC Round 1 All-Star · [Business Type]</div>
+      </div>
+      <div class="testimonial">
+        <div class="t-quote">"</div>
+        <p>Focus this quote on community and accountability. E.g. "I didn't realize how much I needed the group energy until I had it."</p>
+        <div class="t-author">[Member Name]</div>
+        <div class="t-role">SMAC Round 1 Member · [Business Type]</div>
+      </div>
+      <div class="testimonial">
+        <div class="t-quote">"</div>
+        <p>Speak to skeptics here. E.g. "I almost didn't join — now I'm telling everyone to sign up for Round 2."</p>
+        <div class="t-author">[Member Name]</div>
+        <div class="t-role">SMAC Round 1 Member · [Business Type]</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">60+</span>
+        <span class="stat-label">Round 1 Members</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3mo</span>
+        <span class="stat-label">Of Accountability</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">$150</span>
+        <span class="stat-label">Cash Prizes Given Away in Round 1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1,000+</span>
+        <span class="stat-label">Posts Individually Verified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="tag">Choose Your Path</div>
+    <h2>Simple, Honest Pricing</h2>
+    <p class="pricing-sub">Join Round 2 only, or lock in all three remaining Rounds for 2026 at the Founder's Rate. Prices will increase each Round — locking in now is the move.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-label">Round 2 Only</div>
+        <div class="pricing-amount"><sup>$</sup>35</div>
+        <div class="pricing-per-month">$11.67 / mo</div>
+        <div class="pricing-period">One time · March–May 2026</div>
+        <p class="pricing-desc">Round 1 was free — but this is where it gets serious & the stakes are raised. Three months of accountability, community, and greater cash prize eligibility for less than a half tank of gas. But the price of Round 3 & 4 will increase.</p>
+        <ul class="pricing-features">
+          <li>90 days of structured accountability</li>
+          <li>Progressive posting requirements</li>
+          <li>Community of fellow solopreneurs</li>
+          <li>Community platform access for your current Round (3 months)</li>
+          <li>Content strategy education w/ sources</li>
+          <li>Eligible for end-of-round cash prizes</li>
+        </ul>
+        <!-- ✅ REPLACE WITH YOUR ROUND 2 STRIPE LINK -->
+        <a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="pricing-cta primary">Join Round 2 — $35</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Best Value</div>
+        <div class="pricing-label">Founder's Rate — Rounds 2, 3 & 4</div>
+        <div class="pricing-amount"><sup>$</sup>100</div>
+        <div class="pricing-per-month">$11.11 / mo</div>
+        <div class="pricing-period">One time · March–November 2026</div>
+        <div class="savings-tag">Lock in the Founder's Rate — prices increase each Round</div>
+        <p class="pricing-desc">Nine months of accountability, community, and cash prize eligibility — pay once and never think about it again.</p>
+        <ul class="pricing-features">
+          <li>Covers Round 2 (March–May), Round 3 (June–August) + Round 4 (Sept–November)</li>
+          <li>Nine months of accountability for $100</li>
+          <li>Priority community access</li>
+          <li>All content strategy education included</li>
+          <li>Eligible for both end-of-round prize pools</li>
+          <li>Locks you in at the Founder's Rate while remaining Rounds increase in price</li>
+        </ul>
+        <!-- ✅ REPLACE WITH YOUR YEAR BUNDLE STRIPE LINK -->
+        <a href="https://buy.stripe.com/cNifZhgCf5MX99Qalbbo401" class="pricing-cta featured-btn">Lock In Rounds 2, 3 & 4 — $100</a>
+      </div>
+    </div>
+    <div class="revenue-note">
+      <strong>The prizes grow with the community:</strong> The more people who join SMAC, the bigger the cash prizes get — for everyone. Every new member raises the pot. Invite a friend, grow the reward.
+    </div>
+  </div>
+</section>
+
+<!-- STAKES -->
+<section class="stakes">
+  <div class="stakes-inner">
+    <h3>What If You Do It For Free By Yourself?</h3>
+    <p>You might make it happen on your own — but there's no group accountability, no community cheering you on, no structure keeping you honest, and no education to make sure you're posting the right things. You'll watch a YouTube video or jump into a free challenge, feel motivated for a week, and then hit a wall with nobody to pull you back. Or it's another 90 days of "I'll post more next week" and nothing happens. Another quarter of watching your competitors show up while you stay invisible. The algorithm rewards consistency and punishes absence. <strong>$35 is not the risk. Another quarter of silence is.</strong></p>
+  </div>
+</section>
+
+<!-- FAQ / OBJECTIONS -->
+<section class="objections" id="faq">
+  <div class="container">
+    <div class="tag">Common Questions</div>
+    <h2>Still on the Fence?</h2>
+    <p class="obj-sub">Every objection, answered honestly.</p>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">I don't have time to post consistently.</div>
+        <div class="faq-a">That's exactly why the requirements ramp up gradually. Month 1 is one post a week — less than 30 minutes. The challenge builds your habit before it builds your volume. If you can't find 30 minutes a week, this isn't the right time. But it probably is, and you know it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I'm not sure this will work for my industry or niche.</div>
+        <div class="faq-a">Round 1 had 60+ founders across different niches, service types, and industries. The principles of consistency and accountability are universal. Social media growth takes 3–6 months for traction — that's true regardless of niche. SMAC gives you the structure to stay in the game long enough for it to pay off.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I've tried challenges before and they never stick.</div>
+        <div class="faq-a">Most challenges fail because the accountability is soft and the community is passive. SMAC tracks your posting requirements, has real stakes (cash prizes), and is run by someone in the trenches with you — not a faceless course platform. The 60 founders who finished Round 1 had that same doubt.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is $35 really worth it? What's the ROI?</div>
+        <div class="faq-a">One client, one sale, or one lead from your consistent content pays back $35 a hundred times over. The giveaway at the end of the round is a bonus. The real ROI is 90 days of showing up in front of your audience while your competitors stay quiet. That compounds. $35 does not.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I don't meet the posting requirements?</div>
+        <div class="faq-a">Miss the weekly minimum two weeks in a row and you'll be removed from the Instagram Group Chat — that's the accountability part. But it's not the end. If you're willing to recommit to the requirements, you're welcome back anytime, no questions asked. And no matter what happens with the IG group, you keep full access to the community platform for the duration of your round. You paid for it, it's yours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final" id="join">
+  <div class="container">
+    <h2>Your Audience<br>Is <em>Waiting.</em></h2>
+    <p>Join solo founders building real consistency — one post at a time. Round 2 runs March through May. Don't sit this one out.</p>
+    <div class="cta-price-tag">One Time · $35 · 90 Days · No Contracts</div>
+    <!-- ✅ REPLACE THE # BELOW WITH YOUR STRIPE LINK: https://buy.stripe.com/xxxxxxxx -->
+    <a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="btn-primary">Join SMAC Round 2 — $35</a>
+    <div class="cta-fine" style="margin-top:16px; color: var(--gold-dk); font-family: 'DM Mono', monospace; letter-spacing: 1px;">Enrollment Closes March 14</div>
+    <div class="cta-fine" style="margin-top:16px;">Want the best deal? <a href="https://buy.stripe.com/cNifZhgCf5MX99Qalbbo401">Lock in Rounds 2, 3 & 4 for $100 →</a></div>
+    <div class="cta-fine">Not ready for Round 2? <a href="https://forms.gle/2X5M2D666N5mndC59">Get on the Round 3 waitlist →</a></div>
+    <div class="giveaway-box">
+      <div class="giveaway-item">
+        <div class="giveaway-amount">$100+</div>
+        <div class="giveaway-label">All-Star Prize</div>
+      </div>
+      <div class="giveaway-divider"></div>
+      <div class="giveaway-item">
+        <div class="giveaway-amount">$50+</div>
+        <div class="giveaway-label">Finisher Prize</div>
+      </div>
+      <div class="giveaway-divider"></div>
+      <div class="giveaway-item">
+        <div class="giveaway-amount">↑</div>
+        <div class="giveaway-label">Grows With Every Member</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="margin: 0 auto 28px auto; display: inline-block; border: 1.5px solid var(--ink); background: #ffffff; padding: 10px 24px; border-radius: 3px;">
+    <a href="https://www.joinwac.com" style="text-decoration: none;" onmouseover="this.querySelector('p').style.color='#c9a84c';this.parentElement.style.borderColor='#c9a84c'" onmouseout="this.querySelector('p').style.color='var(--ink)';this.parentElement.style.borderColor='var(--ink)'"><p style="color: var(--ink); font-size: 13px; margin: 0; font-family: 'DM Mono', monospace; letter-spacing: 0.5px; transition: color 0.2s ease;">Also by Nate: <strong>WAC — Website Accountability Challenge</strong> →</p></a>
+  </div>
+  <div class="footer-logo">SMAC<span>.</span></div>
+  <p>Social Media Accountability Challenge · Round 2 · March–May 2026</p>
+  <p><a href="contact.html">Contact</a> · <a href="privacy.html">Privacy</a></p>
+</footer>
+
+<!-- FAQ ACCORDION -->
+<script>
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

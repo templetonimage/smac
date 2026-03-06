@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — SMAC 2026</title>
+<meta name="description" content="Privacy Policy for the Social Media Accountability Challenge.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0d0d0d;
+    --white:   #faf9f7;
+    --offwhite:#f2f0eb;
+    --gold:    #c9a84c;
+    --gold-lt: #e8c97a;
+    --gold-dk: #9e7c2e;
+    --ink:     #1a1a1a;
+    --muted:   #6b6560;
+    --border:  #e0dbd2;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1040px; margin: 0 auto; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(250,249,247,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    border-bottom: none;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+    border: 1.5px solid var(--ink);
+  }
+  .nav-cta:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+  .nav-back:hover { color: var(--gold); }
+
+  /* ── PAGE ── */
+  .page-wrap {
+    padding: 80px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 12px; border-radius: 3px;
+    border: 1px solid var(--gold);
+    color: var(--gold-dk);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px; line-height: 1;
+    letter-spacing: 2px;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+  h1 em { color: var(--gold); font-style: normal; }
+
+  .effective-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 48px;
+  }
+
+  .policy-section {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .policy-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 1.5px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  ul {
+    list-style: none;
+    margin: 16px 0;
+  }
+  ul li {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.8; padding-left: 20px;
+    position: relative; margin-bottom: 8px;
+  }
+  ul li::before {
+    content: '·';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+  .page-wrap a { border-bottom: 1px solid var(--gold); }
+  .page-wrap a:hover { color: var(--gold-dk); }
+
+  .highlight-box {
+    background: rgba(201,168,76,0.07);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 0 4px 4px 0;
+    margin: 24px 0;
+  }
+  .highlight-box p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 60px;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  footer a { border-bottom: none; }
+  footer a:hover { color: var(--gold); }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 3px;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .footer-logo span { color: var(--gold); }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 24px; }
+    .page-wrap { padding: 48px 24px; }
+    h1 { font-size: 52px; }
+    footer { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">SMAC <span>2026</span></a>
+  <div class="nav-links"><a href="index.html#how-it-works">How It Works</a><a href="index.html#compare">Compare</a><a href="index.html#pricing">Pricing</a><a href="index.html#faq">FAQ</a><a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="nav-cta">Join Round 2 <span>→</span></a></div>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="tag">Legal</div>
+  <h1>Privacy <em>Policy.</em></h1>
+  <p class="effective-date">Effective Date: March 1, 2026 · Last Updated: March 2026</p>
+
+  <div class="highlight-box">
+    <p>Plain English summary: We collect your name, email, and payment info to run SMAC. We don't sell your data. We don't share it with anyone except the tools required to operate the challenge (Stripe for payments, Google for forms). That's it.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">01</div>
+    <h2>Who We Are</h2>
+    <p>The Social Media Accountability Challenge (SMAC) is operated by Nate Templeton, a sole proprietor based in Maryland, United States. SMAC is accessible at <a href="https://www.joinsmac.com">www.joinsmac.com</a>.</p>
+    <p>For any privacy-related questions, you can contact us directly at <a href="mailto:nate@templetonimage.com">nate@templetonimage.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">02</div>
+    <h2>What We Collect</h2>
+    <p>We collect only the information necessary to run the challenge and communicate with participants:</p>
+    <ul>
+      <li><strong>Payment information</strong> — name, email address, and billing details collected by Stripe when you register. We do not store your credit card number directly; Stripe handles all payment processing securely.</li>
+      <li><strong>Email address</strong> — collected via Google Forms if you join a waitlist for a future round.</li>
+      <li><strong>Instagram handle</strong> — collected as part of onboarding so we can verify your posts.</li>
+      <li><strong>Communications</strong> — if you email us, we retain that correspondence to respond to your inquiry.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">03</div>
+    <h2>How We Use It</h2>
+    <p>Your information is used exclusively to:</p>
+    <ul>
+      <li>Process your registration and payment</li>
+      <li>Communicate challenge updates, requirements, and prize announcements</li>
+      <li>Verify your social media posts as part of the accountability process</li>
+      <li>Respond to questions or support requests</li>
+      <li>Notify waitlist members when a new round opens</li>
+    </ul>
+    <p>We do not use your data for advertising, profiling, or any purpose beyond operating SMAC.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">04</div>
+    <h2>Who We Share It With</h2>
+    <p>We do not sell, rent, or trade your personal information. We share data only with the third-party services required to operate the challenge:</p>
+    <ul>
+      <li><strong>Stripe</strong> — payment processing. Stripe's privacy policy is available at <a href="https://stripe.com/privacy" target="_blank">stripe.com/privacy</a>.</li>
+      <li><strong>Google</strong> — waitlist forms via Google Forms. Google's privacy policy is available at <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>.</li>
+    </ul>
+    <p>Beyond these services, your data is not shared with any other party.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">05</div>
+    <h2>Data Retention</h2>
+    <p>We retain your information for as long as necessary to fulfill the purposes described above. If you participated in a round of SMAC, we retain your registration records for a reasonable period for accounting and record-keeping purposes. Waitlist emails are deleted once a round has closed enrollment.</p>
+    <p>You may request deletion of your data at any time by emailing <a href="mailto:nate@templetonimage.com">nate@templetonimage.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">06</div>
+    <h2>Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Request access to the personal data we hold about you</li>
+      <li>Request correction of inaccurate information</li>
+      <li>Request deletion of your data</li>
+      <li>Opt out of any future communications at any time</li>
+    </ul>
+    <p>To exercise any of these rights, email <a href="mailto:nate@templetonimage.com">nate@templetonimage.com</a>. We will respond within 30 days.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">07</div>
+    <h2>Cookies</h2>
+    <p>This site does not use tracking cookies or third-party analytics. Stripe may set cookies as part of the payment process; these are governed by Stripe's own privacy policy.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">08</div>
+    <h2>Children's Privacy</h2>
+    <p>SMAC is intended for adults 18 and older. We do not knowingly collect personal information from anyone under the age of 18. If you believe a minor has submitted information through our site, please contact us immediately at <a href="mailto:nate@templetonimage.com">nate@templetonimage.com</a>.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">09</div>
+    <h2>Changes to This Policy</h2>
+    <p>We may update this Privacy Policy as SMAC grows or as legal requirements change. When we do, we will update the effective date at the top of this page. Continued participation in SMAC after any update constitutes acceptance of the revised policy.</p>
+  </div>
+
+  <div class="policy-section">
+    <div class="section-number">10</div>
+    <h2>Contact</h2>
+    <p>For any questions about this Privacy Policy or how your data is handled, contact:</p>
+    <p><strong>Nate Templeton</strong><br>
+    SMAC — Social Media Accountability Challenge<br>
+    Maryland, United States<br>
+    <a href="mailto:nate@templetonimage.com">nate@templetonimage.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">SMAC<span>.</span></div>
+  <p>Social Media Accountability Challenge · Round 2 · March–May 2026</p>
+  <p style="margin-top:8px;"><a href="index.html">Home</a> · <a href="contact.html">Contact</a></p>
+</footer>
+
+</body>
+</html>
