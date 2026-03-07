@@ -1369,8 +1369,8 @@
 </section>
 
 <!-- CONTACT CARD -->
-<section style="background:#f9f7f2; padding: 64px 24px; text-align:center;">
-  <div style="max-width:480px; margin:0 auto; border: 1.5px solid var(--ink); background:#ffffff; padding: 40px 36px; border-radius:3px;">
+<section style="background:#111111; padding: 64px 24px; text-align:center;">
+  <div style="max-width:480px; margin:0 auto; border: 1.5px solid #ffffff; background:#ffffff; padding: 40px 36px; border-radius:3px;">
     <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-dk); margin-bottom:12px;">Questions?</div>
     <div style="font-family:'Bebas Neue',sans-serif; font-size:28px; letter-spacing:3px; margin-bottom:4px;">Nate Templeton</div>
     <div style="font-family:'DM Mono',monospace; font-size:12px; color:#666; margin-bottom:24px;">Founder, SMAC · Videographer & Solopreneur</div>
@@ -1392,16 +1392,7 @@
 </footer>
 
 <!-- FAQ ACCORDION -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
-      const item = q.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
-</script>
-
-</body>
-</html>
+      const item = q.paren
