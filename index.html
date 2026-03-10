@@ -1388,4 +1388,17 @@
     <a href="https://www.joinwac.com" style="text-decoration: none;" onmouseover="this.querySelector('p').style.color='#c9a84c';this.parentElement.style.borderColor='#c9a84c'" onmouseout="this.querySelector('p').style.color='var(--ink)';this.parentElement.style.borderColor='var(--ink)'"><p style="color: var(--ink); font-size: 13px; margin: 0; font-family: 'DM Mono', monospace; letter-spacing: 0.5px; transition: color 0.2s ease;">Also by Nate: <strong>WAC — Website Accountability Challenge</strong> →</p></a>
   </div>
   <div class="footer-logo">SMAC<span>.</span></div>
-  <p>Social Media Accountability Challenge · Ro
+  <p>Social Media Accountability Challenge · Round 2 · 2026</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
