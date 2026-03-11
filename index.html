@@ -862,10 +862,100 @@
   footer p { font-size: 13px; color: var(--muted); }
   footer a { color: var(--muted); text-underline-offset: 3px; }
 
+  /* ── HAMBURGER ── */
+  .nav-mobile-right {
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-login-mobile {
+    font-size: 13px;
+    color: var(--gold-dk);
+    text-decoration: underline;
+    text-decoration-color: var(--ink);
+    text-underline-offset: 3px;
+    font-weight: 500;
+    border: 1.5px solid var(--gold);
+    padding: 7px 13px;
+    border-radius: 3px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+    text-decoration-thickness: 1.5px;
+  }
+  .nav-login-mobile:hover {
+    color: var(--ink);
+    border-color: var(--gold-dk);
+  }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: rgba(250,249,247,0.98);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px 28px;
+    gap: 4px;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    z-index: 199;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 15px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--ink); }
+  .mobile-menu .mobile-join {
+    margin-top: 12px;
+    background: var(--ink);
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    border-bottom: none;
+  }
+  .mobile-menu .mobile-join:hover { background: var(--gold-dk); color: #fff; }
+
   /* ── MOBILE ── */
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
+    .nav-mobile-right { display: flex; }
     .hero, .stakes, .cta-final, footer { padding-left: 24px; padding-right: 24px; }
     .hero { padding-top: 72px; padding-bottom: 64px; }
     .hero::after { display: none; }
@@ -897,7 +987,22 @@
     <!-- ✅ REPLACE THE # BELOW WITH YOUR STRIPE LINK TOO -->
     <a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="nav-cta">Join Round 2 <span class="nav-arrow">→</span></a>
   </div>
+  <!-- Mobile right side: Login + Hamburger -->
+  <div class="nav-mobile-right">
+    <a href="https://app.joinsmac.com" class="nav-login-mobile">Member Login</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+<!-- Mobile dropdown menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+  <a href="#compare" class="mobile-nav-link">Compare</a>
+  <a href="#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="#faq" class="mobile-nav-link">FAQ</a>
+  <a href="https://buy.stripe.com/eVq7sLadRfnxdq6eBrbo400" class="mobile-join">Join Round 2 — $45 →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1397,6 +1502,21 @@
     q.addEventListener('click', function() {
       var item = this.closest('.faq-item');
       item.classList.toggle('open');
+    });
+  });
+
+  // Hamburger toggle
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  // Close menu when a nav link is clicked
+  document.querySelectorAll('.mobile-nav-link, .mobile-join').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
     });
   });
 </script>
