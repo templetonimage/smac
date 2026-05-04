@@ -72,6 +72,114 @@
     margin-bottom: 28px;
   }
 
+  /* ── WAITLIST MODAL ── */
+  .wl-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,13,0.72);
+    z-index: 900;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .wl-overlay.open { display: flex; }
+  .wl-modal {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 48px 44px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.28);
+  }
+  .wl-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--muted);
+    cursor: pointer;
+    line-height: 1;
+    font-family: inherit;
+  }
+  .wl-close:hover { color: var(--ink); }
+  .wl-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 10px;
+  }
+  .wl-modal h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .wl-modal p {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+  .wl-field {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .wl-field:focus { border-color: var(--gold); }
+  .wl-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .wl-submit:hover { background: var(--gold-dk); }
+  .wl-submit:disabled { background: #c0bbb5; cursor: not-allowed; }
+  .wl-success {
+    display: none;
+    text-align: center;
+    padding: 16px 0 0;
+  }
+  .wl-success-icon { font-size: 36px; margin-bottom: 12px; }
+  .wl-success h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .wl-success p { font-size: 14px; color: var(--muted); margin: 0; }
+  .wl-error {
+    font-size: 13px;
+    color: #c0392b;
+    margin-top: 8px;
+    display: none;
+  }
+
   /* ── NAV ── */
   nav {
     position: sticky;
@@ -989,7 +1097,7 @@
     <a href="#faq">FAQ</a>
     <a href="https://app.joinsmac.com" style="font-size:14px; color:var(--gold-dk); text-decoration:none; font-weight:500; border:1.5px solid var(--gold); padding:8px 16px; border-radius:3px; transition:color 0.2s, border-color 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.borderColor='var(--gold)';this.style.color='var(--gold-dk)'">Member Login</a>
     <!-- ✅ REPLACE THE # BELOW WITH YOUR STRIPE LINK TOO -->
-    <a href="https://forms.gle/vLc74ZK5yJ3FqASx9" class="nav-cta">Join Round 3 Waitlist <span class="nav-arrow">→</span></a>
+    <button onclick="openWaitlistModal()" class="nav-cta" style="cursor:pointer;">Join Round 3 Waitlist <span class="nav-arrow">→</span></button>
   </div>
   <!-- Mobile right side: Login + Hamburger -->
   <div class="nav-mobile-right">
@@ -1005,7 +1113,7 @@
   <a href="#compare" class="mobile-nav-link">Compare</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <a href="#faq" class="mobile-nav-link">FAQ</a>
-  <a href="https://forms.gle/vLc74ZK5yJ3FqASx9" class="mobile-join">Join Round 3 Waitlist →</a>
+  <button onclick="openWaitlistModal()" class="mobile-join" style="cursor:pointer; border:none; background:none; font-family:inherit; font-size:inherit; font-weight:inherit; padding:0; text-align:left;">Join Round 3 Waitlist →</button>
 </div>
 
 <!-- HERO -->
@@ -1013,7 +1121,7 @@
   <div class="container">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
-      <div class="hero-eyebrow-text">Round 1 Was Free · Round 2 Starts March 2026</div>
+      <div class="hero-eyebrow-text">Round 1 Was Free · Round 3 Starts June 1, 2026</div>
     </div>
     <div class="price-pill"><strong>Round 2 — SOLD OUT</strong></div>
     <h1>Stop Starting Over.<br><em>Start Showing Up.</em></h1>
@@ -1021,7 +1129,7 @@
       The <strong>Social Media Accountability Challenge 2026</strong> turns sporadic posting into a real, consistent habit inside a supportive community of fellow creatives — in just 90 days. Built for solo founders who know they should be showing up online but keep falling off by themselves.
     </p>
     <div class="cta-group">
-      <a href="https://forms.gle/vLc74ZK5yJ3FqASx9" class="btn-primary">Join Round 3 Waitlist</a>
+      <button onclick="openWaitlistModal()" class="btn-primary" style="border:none; cursor:pointer; font-family:'DM Sans',sans-serif;">Join Round 3 Waitlist</button>
       <a href="#how-it-works" class="btn-ghost">See how it works ↓</a>
     </div>
     <div class="hero-proof-bar">
@@ -1090,8 +1198,8 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h4>Register for Round 2</h4>
-        <p>One payment. Three months of accountability, community, coaching, and cash prize eligibility. Secure your spot before Round 2 closes.</p>
+        <h4>Register for Round 3</h4>
+        <p>One payment. Three months of accountability, community, coaching, and cash prize eligibility. Secure your spot before Round 3 closes.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
@@ -1382,26 +1490,28 @@
           <li>Eligible for end-of-round cash prizes</li>
         </ul>
         <button disabled style="display:block; width:100%; padding:16px; background:#c0bbb5; color:#fff; border:none; border-radius:3px; font-size:15px; font-weight:600; letter-spacing:0.3px; cursor:not-allowed; font-family:'DM Sans',sans-serif;">Sold Out — Round 2 Full</button>
+        <button onclick="openWaitlistModal()" style="display:block; width:100%; padding:13px; margin-top:10px; background:transparent; color:var(--gold-dk); border:1.5px solid var(--gold); border-radius:3px; font-size:14px; font-weight:600; letter-spacing:0.3px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.1)'" onmouseout="this.style.background='transparent'">Join Round 3 Waitlist →</button>
       </div>
       <div class="pricing-card featured" style="position:relative; opacity:0.85;">
         <div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(13,13,13,0.08); border-radius:inherit; pointer-events:none; z-index:1;"></div>
-        <div class="pricing-badge" style="background:#6b6560;">SOLD OUT</div>
-        <div class="pricing-label">Founder's Rate — Rounds 2, 3 & 4</div>
-        <div class="pricing-amount" style="color:var(--muted);"><sup>$</sup>100</div>
-        <div class="pricing-per-month">$11.11 / mo</div>
-        <div class="pricing-period">One time · March–November 2026</div>
-        <div class="limited-tag" style="background:rgba(107,101,96,0.12); border-color:#6b6560; color:#6b6560;">✓ Limited to 1st 5 — Sold Out</div>
-        <div class="savings-tag" style="background:rgba(107,101,96,0.1); border-color:rgba(107,101,96,0.3); color:#6b6560;">This Founder's Rate is no longer available</div>
-        <p class="pricing-desc">Nine months of accountability, community, and cash prize eligibility — pay once and never think about it again.</p>
+        <div class="pricing-badge">SMAC Pro</div>
+        <div class="pricing-label">SMAC Pro — Round 3</div>
+        <div class="pricing-amount"><sup>$</sup>65</div>
+        <div class="pricing-per-month">$21.67 / mo</div>
+        <div class="pricing-period">One time · June–August 2026</div>
+        <div class="limited-tag">Coming Soon</div>
+        <p class="pricing-desc">Everything in SMAC, plus AI-powered tools, live Zoom sessions, and direct access to Nate — built for founders who want to go deeper.</p>
         <ul class="pricing-features">
-          <li>Covers Round 2 (March–May), Round 3 (June–August) + Round 4 (Sept–November)</li>
-          <li>Nine months of accountability for $100</li>
-          <li>Priority community access</li>
-          <li>All content strategy education included</li>
-          <li>Eligible for both end-of-round prize pools</li>
-          <li>Locks you in at the Founder's Rate while remaining Rounds increase in price</li>
+          <li>Optional SMS reminders</li>
+          <li>AI weekly planning + caption assist</li>
+          <li>Content performance analysis</li>
+          <li>Early access + direct input</li>
+          <li>Exclusive Zooms when available</li>
+          <li>Hook Generator</li>
+          <li>Increased weekly minimums for those focused on growth after building the habit</li>
         </ul>
-        <button disabled style="display:block; width:100%; padding:16px; background:#c0bbb5; color:#fff; border:none; border-radius:3px; font-size:15px; font-weight:600; letter-spacing:0.3px; cursor:not-allowed; font-family:'DM Sans',sans-serif;">Sold Out — 1st 5 Claimed</button>
+        <button disabled style="display:block; width:100%; padding:16px; background:#c0bbb5; color:#fff; border:none; border-radius:3px; font-size:15px; font-weight:600; letter-spacing:0.3px; cursor:not-allowed; font-family:'DM Sans',sans-serif;">Coming Soon</button>
+        <button onclick="openWaitlistModal()" style="display:block; width:100%; padding:13px; margin-top:10px; background:transparent; color:var(--gold-dk); border:1.5px solid var(--gold); border-radius:3px; font-size:14px; font-weight:600; letter-spacing:0.3px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:background 0.2s;" onmouseover="this.style.background='rgba(201,168,76,0.1)'" onmouseout="this.style.background='transparent'">Join Round 3 Waitlist →</button>
       </div>
     </div>
     <div class="revenue-note">
@@ -1425,6 +1535,10 @@
     <h2>Still on the Fence?</h2>
     <p class="obj-sub">Every objection, answered honestly.</p>
     <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">Why do I need SMAC? Can't I just post on my own?</div>
+        <div class="faq-a">You could. And you've probably tried. The problem isn't knowing you should post — it's actually doing it when no one is watching and nothing feels urgent. SMAC exists because consistency is a social problem, not a knowledge problem. When you're in a room with 60+ other solopreneurs who are all showing up, sharing wins, calling each other out, and cheering each other on, "I'll post next week" stops being an option. The community doesn't just hold you accountable — it reminds you why you're doing this in the first place. Going at it alone means your motivation lives or dies by your mood. Going at it with SMAC means you have 60 other people who won't let you disappear.</div>
+      </div>
       <div class="faq-item">
         <div class="faq-q">I don't have time to post consistently.</div>
         <div class="faq-a">That's exactly why the requirements ramp up gradually. Month 1 is one post a week — less than 30 minutes. The challenge builds your habit before it builds your volume. If you can't find 30 minutes a week, this isn't the right time. But it probably is, and you know it.</div>
@@ -1455,7 +1569,7 @@
     <h2>Your Audience<br>Is <em>Waiting.</em></h2>
     <p>Round 2 is full. Get on the waitlist for Round 3 — June through August 2026. Don't miss the next one.</p>
     <div class="cta-price-tag">Round 3 · June–August 2026 · 90 Days</div>
-    <a href="https://forms.gle/vLc74ZK5yJ3FqASx9" class="btn-primary">Join Round 3 Waitlist</a>
+    <button onclick="openWaitlistModal()" class="btn-primary" style="border:none; cursor:pointer; font-family:'DM Sans',sans-serif;">Join Round 3 Waitlist</button>
     <div class="cta-fine" style="margin-top:16px; color: var(--gold-dk); font-family: 'DM Mono', monospace; letter-spacing: 1px;">Round 2 Enrollment Closed</div>
     <div class="cta-fine" style="margin-top:16px;">Already a member? <a href="https://app.joinsmac.com">Log in to the platform →</a></div>
     <div class="giveaway-box">
@@ -1485,7 +1599,7 @@
     <div style="font-family:'DM Mono',monospace; font-size:12px; color:#666; margin-bottom:24px;">Founder, SMAC · Videographer & Solopreneur</div>
     <div style="width:40px; height:1.5px; background:var(--gold-dk); margin:0 auto 24px auto;"></div>
     <a href="https://joinsmac.com/contact.html" style="font-family:'DM Mono',monospace; font-size:15px; color:var(--ink); text-decoration:none; border-bottom:1.5px solid var(--gold-dk); padding-bottom:2px; transition:color 0.2s ease;" onmouseover="this.style.color='#c9a84c'" onmouseout="this.style.color='var(--ink)'">Contact Me</a>
-    <p style="font-family:'DM Mono',monospace; font-size:12px; color:#555; margin:20px 0 8px 0; line-height:1.7;">Have a question before joining, need help with registration, or want to learn more about the Founder's Rate? Email is the best way to reach me.</p>
+    <p style="font-family:'DM Mono',monospace; font-size:12px; color:#555; margin:20px 0 8px 0; line-height:1.7;">Have a question before joining, need help with registration, or want to learn more about SMAC Pro? Email is the best way to reach me.</p>
     <div style="font-family:'DM Mono',monospace; font-size:11px; color:var(--gold-dk); letter-spacing:1px;">⏱ Typical response within 24–48 hours</div>
   </div>
 </section>
@@ -1504,6 +1618,27 @@
   </p>
 </footer>
 
+<!-- WAITLIST MODAL -->
+<div class="wl-overlay" id="waitlistOverlay" onclick="handleOverlayClick(event)">
+  <div class="wl-modal" role="dialog" aria-modal="true" aria-labelledby="wlTitle">
+    <button class="wl-close" onclick="closeWaitlistModal()" aria-label="Close">&times;</button>
+    <div id="wlForm">
+      <div class="wl-eyebrow">Round 3 · June–August 2026</div>
+      <h3 id="wlTitle">Join the Waitlist</h3>
+      <p>Be first in line when Round 3 opens. We'll email you as soon as enrollment goes live.</p>
+      <input class="wl-field" type="text" id="wlName" placeholder="Your name" required autocomplete="name">
+      <input class="wl-field" type="email" id="wlEmail" placeholder="Your email address" required autocomplete="email">
+      <button class="wl-submit" id="wlSubmitBtn" onclick="submitWaitlist()">Reserve My Spot →</button>
+      <div class="wl-error" id="wlError">Something went wrong. Please try again.</div>
+    </div>
+    <div class="wl-success" id="wlSuccess">
+      <div class="wl-success-icon">&#10003;</div>
+      <h4>You're on the list.</h4>
+      <p>We'll email you the moment Round 3 enrollment opens. See you in June.</p>
+    </div>
+  </div>
+</div>
+
 <script>
   document.querySelectorAll('.faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
@@ -1512,20 +1647,79 @@
     });
   });
 
-  // Hamburger toggle
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', function() {
     hamburger.classList.toggle('open');
     mobileMenu.classList.toggle('open');
   });
-  // Close menu when a nav link is clicked
   document.querySelectorAll('.mobile-nav-link, .mobile-join').forEach(function(link) {
     link.addEventListener('click', function() {
       hamburger.classList.remove('open');
       mobileMenu.classList.remove('open');
     });
   });
+
+  function openWaitlistModal() {
+    document.getElementById('waitlistOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('wlName').focus();
+  }
+
+  function closeWaitlistModal() {
+    document.getElementById('waitlistOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('waitlistOverlay')) closeWaitlistModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWaitlistModal();
+  });
+
+  async function submitWaitlist() {
+    var name = document.getElementById('wlName').value.trim();
+    var email = document.getElementById('wlEmail').value.trim();
+    var errEl = document.getElementById('wlError');
+    var btn = document.getElementById('wlSubmitBtn');
+
+    errEl.style.display = 'none';
+
+    if (!name || !email) {
+      errEl.textContent = 'Please enter your name and email.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errEl.textContent = 'Please enter a valid email address.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+
+    try {
+      var res = await fetch('https://formspree.io/f/mgodaqeg', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email })
+      });
+      if (res.ok) {
+        document.getElementById('wlForm').style.display = 'none';
+        document.getElementById('wlSuccess').style.display = 'block';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (err) {
+      errEl.textContent = 'Something went wrong. Please try again.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Reserve My Spot →';
+    }
+  }
 </script>
 
 </body>
