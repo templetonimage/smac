@@ -180,6 +180,166 @@
     display: none;
   }
 
+  /* ── ROUND 3 REGISTRATION MODAL ── */
+  .r3-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,13,13,0.78);
+    z-index: 950;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .r3-overlay.open { display: flex; }
+  .r3-overlay.visible { opacity: 1; }
+  .r3-modal {
+    background: var(--white);
+    border-radius: 5px;
+    padding: 44px 40px 38px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 28px 90px rgba(0,0,0,0.32);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    text-align: center;
+  }
+  .r3-overlay.visible .r3-modal { transform: translateY(0) scale(1); }
+  .r3-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--muted);
+    cursor: pointer;
+    line-height: 1;
+    font-family: inherit;
+  }
+  .r3-close:hover { color: var(--ink); }
+  .r3-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 12px;
+  }
+  .r3-modal h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-bottom: 10px;
+  }
+  .r3-modal h3 .gold { color: var(--gold); }
+  .r3-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  /* countdown */
+  .r3-countdown-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 10px;
+  }
+  .r3-timer {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+  .r3-unit {
+    background: var(--offwhite);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 6px 8px;
+    min-width: 66px;
+  }
+  .r3-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    line-height: 1;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.18s ease;
+    display: block;
+  }
+  .r3-num.tick { transform: scale(1.16); }
+  .r3-unit-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+  .r3-deadline {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 22px;
+  }
+  .r3-btn {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-bottom: 10px;
+  }
+  .r3-btn-primary { background: var(--gold); color: var(--ink); border: none; }
+  .r3-btn-primary:hover { background: var(--gold-dk); }
+  .r3-btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+  }
+  .r3-btn-secondary:hover { background: var(--ink); color: #fff; }
+  .r3-dismiss {
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 14px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .r3-dismiss:hover { color: var(--ink); }
+  .r3-closed-msg {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    margin: 18px 0;
+  }
+  @media (max-width: 480px) {
+    .r3-modal { padding: 40px 26px 32px; }
+    .r3-modal h3 { font-size: 34px; }
+    .r3-unit { min-width: 58px; }
+    .r3-num { font-size: 30px; }
+  }
+
   /* ── NAV ── */
   nav {
     position: sticky;
@@ -1641,6 +1801,37 @@
   </div>
 </div>
 
+<!-- ROUND 3 REGISTRATION MODAL -->
+<div class="r3-overlay" id="r3Overlay" onclick="r3HandleOverlayClick(event)">
+  <div class="r3-modal" role="dialog" aria-modal="true" aria-labelledby="r3Title">
+    <button class="r3-close" onclick="r3Dismiss(false)" aria-label="Close">&times;</button>
+    <div class="r3-eyebrow">Enrollment Open · Limited to 50 Spots</div>
+    <h3 id="r3Title">Round 3 Starts <span class="gold">June 1</span></h3>
+    <p class="r3-sub">90 days of structured posting, accountability, and community. New members welcome, past rounds can renew.</p>
+
+    <div id="r3LiveBlock">
+      <div class="r3-countdown-label">Registration closes in</div>
+      <div class="r3-timer" id="r3Timer">
+        <div class="r3-unit"><span class="r3-num" id="r3Days">--</span><div class="r3-unit-label">Days</div></div>
+        <div class="r3-unit"><span class="r3-num" id="r3Hours">--</span><div class="r3-unit-label">Hours</div></div>
+        <div class="r3-unit"><span class="r3-num" id="r3Mins">--</span><div class="r3-unit-label">Mins</div></div>
+        <div class="r3-unit"><span class="r3-num" id="r3Secs">--</span><div class="r3-unit-label">Secs</div></div>
+      </div>
+      <div class="r3-deadline">Closes May 31, 2026 · 11:59 PM ET</div>
+      <a href="https://buy.stripe.com/28EaEX2LpcblfyefFvbo409" class="r3-btn r3-btn-primary">Register / Renew for Round 3 →</a>
+      <a href="https://buy.stripe.com/00w4gzdq34IT1Ho0KBbo407" class="r3-btn r3-btn-secondary">Get SMAC Pro →</a>
+    </div>
+
+    <div id="r3ClosedBlock" style="display:none;">
+      <div class="r3-closed-msg">Round 3 Registration Has Closed</div>
+      <p class="r3-sub">Enrollment for Round 3 is now closed. Join the waitlist and we'll notify you when the next round opens.</p>
+      <button class="r3-btn r3-btn-primary" onclick="r3Dismiss(false); openWaitlistModal();">Join the Waitlist →</button>
+    </div>
+
+    <button class="r3-dismiss" onclick="r3Dismiss(true)">I've already signed up / renewed for Round 3</button>
+  </div>
+</div>
+
 <script>
   document.querySelectorAll('.faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
@@ -1678,7 +1869,79 @@
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeWaitlistModal();
+    if (e.key === 'Escape') { closeWaitlistModal(); closeR3Modal(); }
+  });
+
+  /* ── ROUND 3 REGISTRATION MODAL ── */
+  // Deadline: May 31, 2026 11:59:59 PM ET. -04:00 = EDT (Eastern is on DST in May).
+  var R3_DEADLINE = new Date('2026-05-31T23:59:59-04:00').getTime();
+  var R3_DISMISS_KEY = 'smac_r3_modal_dismissed';
+  var r3Interval = null;
+
+  function r3Pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  function r3SetNum(id, val) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var next = r3Pad(val);
+    if (el.textContent !== next) {
+      el.textContent = next;
+      el.classList.add('tick');
+      setTimeout(function() { el.classList.remove('tick'); }, 180);
+    }
+  }
+
+  function r3UpdateTimer() {
+    var diff = R3_DEADLINE - Date.now();
+    if (diff <= 0) {
+      if (r3Interval) { clearInterval(r3Interval); r3Interval = null; }
+      var live = document.getElementById('r3LiveBlock');
+      var closed = document.getElementById('r3ClosedBlock');
+      if (live) live.style.display = 'none';
+      if (closed) closed.style.display = 'block';
+      return;
+    }
+    var s = Math.floor(diff / 1000);
+    r3SetNum('r3Days', Math.floor(s / 86400));
+    r3SetNum('r3Hours', Math.floor((s % 86400) / 3600));
+    r3SetNum('r3Mins', Math.floor((s % 3600) / 60));
+    r3SetNum('r3Secs', s % 60);
+  }
+
+  function openR3Modal() {
+    var ov = document.getElementById('r3Overlay');
+    ov.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function() { ov.classList.add('visible'); });
+    r3UpdateTimer();
+    if (!r3Interval) r3Interval = setInterval(r3UpdateTimer, 1000);
+  }
+
+  function closeR3Modal() {
+    var ov = document.getElementById('r3Overlay');
+    ov.classList.remove('visible');
+    document.body.style.overflow = '';
+    setTimeout(function() { ov.classList.remove('open'); }, 350);
+    if (r3Interval) { clearInterval(r3Interval); r3Interval = null; }
+  }
+
+  function r3Dismiss(permanent) {
+    if (permanent) {
+      try { localStorage.setItem(R3_DISMISS_KEY, '1'); } catch (e) {}
+    }
+    closeR3Modal();
+  }
+
+  function r3HandleOverlayClick(e) {
+    if (e.target === document.getElementById('r3Overlay')) closeR3Modal();
+  }
+
+  // Auto-open on page load (unless dismissed or deadline passed)
+  window.addEventListener('load', function() {
+    var dismissed = false;
+    try { dismissed = localStorage.getItem(R3_DISMISS_KEY) === '1'; } catch (e) {}
+    if (dismissed) return;
+    setTimeout(openR3Modal, 1200);
   });
 
   async function submitWaitlist() {
