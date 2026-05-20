@@ -978,6 +978,128 @@
   .partial { color: var(--gold); font-size: 14px; }
   .smac-highlight { background: rgba(201,168,76,0.06); border-left: 2px solid var(--gold); }
 
+  /* ── PRO FEATURES SECTION ── */
+  .pro-features {
+    padding: var(--section-pad);
+    background: #0a0a0a;
+    color: var(--white);
+    border-top: 3px solid var(--gold);
+  }
+  .pro-features .tag { border-color: rgba(201,168,76,0.4); color: var(--gold-lt); background: rgba(201,168,76,0.08); }
+  .pro-features h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4vw, 56px);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .pro-features h2 em { font-style: normal; color: var(--gold); }
+  .pro-features-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.5);
+    max-width: 580px;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+  .pro-tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .pro-tool-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 32px 28px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .pro-tool-card:hover { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.04); }
+  .pro-tool-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .pro-tool-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+    color: var(--gold-lt);
+    margin-bottom: 8px;
+  }
+  .pro-tool-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .pro-tool-detail {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(201,168,76,0.7);
+    text-transform: uppercase;
+  }
+  .pro-secondary-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .pro-secondary-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+  .pro-secondary-card:hover { border-color: rgba(255,255,255,0.15); }
+  .pro-secondary-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .pro-secondary-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .pro-secondary-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.6;
+  }
+  .pro-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .pro-cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    padding: 15px 34px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+    transition: background 0.2s;
+  }
+  .pro-cta-btn:hover { background: var(--gold-lt); }
+  .pro-cta-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+  @media (max-width: 700px) {
+    .pro-tool-grid { grid-template-columns: 1fr; }
+    .pro-secondary-row { grid-template-columns: 1fr; }
+  }
+
   /* ── PRICING CARDS ── */
   .pricing {
     padding: var(--section-pad);
@@ -1231,7 +1353,7 @@
     .hero, .stakes, .cta-final, footer { padding-left: 24px; padding-right: 24px; }
     .hero { padding-top: 72px; padding-bottom: 64px; }
     .hero::after { display: none; }
-    .problem, .guide, .plan, .months, .proof, .objections { padding: 64px 24px; }
+    .problem, .guide, .plan, .months, .proof, .objections, .pro-features { padding: 64px 24px; }
     .problem-grid { grid-template-columns: 1fr; }
     .guide-inner { grid-template-columns: 1fr; gap: 40px; }
     .steps { grid-template-columns: 1fr; gap: 16px; }
@@ -1253,6 +1375,7 @@
   <div class="nav-links">
     <a href="#how-it-works">How It Works</a>
     <a href="#compare">Compare</a>
+    <a href="#pro-features">Pro</a>
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a href="https://app.joinsmac.com" style="font-size:14px; color:var(--gold-dk); text-decoration:none; font-weight:500; border:1.5px solid var(--gold); padding:8px 16px; border-radius:3px; transition:color 0.2s, border-color 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.borderColor='var(--gold)';this.style.color='var(--gold-dk)'">Member Login</a>
@@ -1271,6 +1394,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
   <a href="#compare" class="mobile-nav-link">Compare</a>
+  <a href="#pro-features" class="mobile-nav-link">Pro</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <a href="#faq" class="mobile-nav-link">FAQ</a>
   <!-- ✅ REPLACE href BELOW WITH YOUR LIVE SMAC ROUND 3 STRIPE LINK -->
@@ -1537,6 +1661,22 @@
           <td><span class="cross">✗</span></td>
         </tr>
         <tr>
+          <td class="feature-name">AI content tools built into the platform</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span> Pro tier — 4 live tools</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
+          <td class="feature-name">SMS deadline reminders</td>
+          <td class="smac-col smac-highlight"><span class="check">✓</span> Pro incl. · $19 add-on</td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+        </tr>
+        <tr>
           <td class="feature-name">Price</td>
           <td class="smac-col smac-highlight" style="color:var(--gold-lt);">Less than a streaming service/mo.</td>
           <td>$59 for 15 days · Not currently active</td>
@@ -1663,13 +1803,13 @@
         <p class="pricing-desc">You've built the habit. Now make it count. Everything in SMAC, plus AI-powered tools and features built for founders who want to go deeper.</p>
         <ul class="pricing-features">
           <li>Everything in SMAC</li>
-          <li>AI weekly planning + caption assist</li>
-          <li>Content performance analysis</li>
-          <li>Hook Generator</li>
-          <li>Grace Tokens for All-Star status</li>
-          <li>Optional SMS reminders</li>
-          <li>Higher weekly minimums for growth-focused founders. Starts at 3 times a week.</li>
-          <li>Early access + direct input</li>
+          <li>Content Performance Analysis — score any post with AI</li>
+          <li>Caption Assist — 3 ready-to-edit captions per idea</li>
+          <li>Weekly Action Plan Generator — day-by-day posting plan</li>
+          <li>Hook Generator — 5 scroll-stopping hooks per topic</li>
+          <li>Analytics Snapshot with Chart.js visualization</li>
+          <li>SMS deadline reminders (Day 4 + final call)</li>
+          <li>Higher weekly targets — 3 → 4 → 5 posts/week across the 90 days</li>
         </ul>
         <!-- ✅ REPLACE href BELOW WITH YOUR LIVE SMAC PRO STRIPE LINK -->
         <a href="https://buy.stripe.com/00w4gzdq34IT1Ho0KBbo407" style="display:block; width:100%; box-sizing:border-box; padding:16px; background:var(--ink); color:#fff; border:none; border-radius:3px; font-size:15px; font-weight:600; letter-spacing:0.3px; cursor:pointer; font-family:'DM Sans',sans-serif; text-align:center; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='var(--gold-dk)'" onmouseout="this.style.background='var(--ink)'">Get SMAC Pro →</a>
@@ -1677,6 +1817,64 @@
     </div>
     <div class="revenue-note">
       <strong>The prizes grow with the community:</strong> The more people who join SMAC, the bigger the cash prizes get — for everyone. Every new member raises the pot. Invite a friend, grow the reward.
+    </div>
+  </div>
+</section>
+
+<!-- SMAC PRO FEATURES -->
+<section class="pro-features" id="pro-features">
+  <div class="container">
+    <div class="tag">SMAC Pro — What's Inside</div>
+    <h2>Built for Founders<br>Who <em>Show Up.</em></h2>
+    <p class="pro-features-sub">SMAC builds the habit. SMAC Pro makes every post count. Four AI tools, built into the platform, designed for the solopreneur who's done warming up.</p>
+
+    <div class="pro-tool-grid">
+      <div class="pro-tool-card">
+        <span class="pro-tool-icon">📊</span>
+        <div class="pro-tool-name">Content Performance Analysis</div>
+        <p class="pro-tool-desc">Paste a caption and enter your engagement numbers. Or upload an Instagram Insights screenshot and let the AI read it directly. Get a scored breakdown of what worked, what to improve, and exactly what to do on your next post.</p>
+        <div class="pro-tool-detail">Scores saves + shares heaviest — the metrics that actually move the algorithm</div>
+      </div>
+      <div class="pro-tool-card">
+        <span class="pro-tool-icon">✍️</span>
+        <div class="pro-tool-name">Caption Assist</div>
+        <p class="pro-tool-desc">Enter your idea, pick your format (Reel, Carousel, Static, Story), and choose a goal and tone. Get three distinct, ready-to-edit captions — each built on 2026 Instagram best practices. Edit before posting. Make it sound like you.</p>
+        <div class="pro-tool-detail">Hook under 80 chars · No AI-sounding openers · Saves & shares CTAs baked in</div>
+      </div>
+      <div class="pro-tool-card">
+        <span class="pro-tool-icon">📅</span>
+        <div class="pro-tool-name">Weekly Action Plan Generator</div>
+        <p class="pro-tool-desc">Tell the tool your niche and what you want to focus on this week. It auto-detects where you are in the 90-day schedule and builds a day-by-day plan with topic, hook angle, format, and rationale for every post. Never stare at a blank screen again.</p>
+        <div class="pro-tool-detail">Saves the last 3 plans as context — no repeated ideas week over week</div>
+      </div>
+      <div class="pro-tool-card">
+        <span class="pro-tool-icon">🪝</span>
+        <div class="pro-tool-name">Hook Generator</div>
+        <p class="pro-tool-desc">Enter your post topic and format. Get five hooks — one each for Curiosity Gap, Contrarian, Tension/Mid-Story, Transformation, and Bold Claim. Every hook under 80 characters, never starts with "I", built to stop the scroll. Tap any card to copy.</p>
+        <div class="pro-tool-detail">Five hook types · Tap-to-copy · Open-loop structure enforced</div>
+      </div>
+    </div>
+
+    <div class="pro-secondary-row">
+      <div class="pro-secondary-card">
+        <span class="pro-secondary-icon">📱</span>
+        <div>
+          <div class="pro-secondary-name">SMS Deadline Reminders</div>
+          <p class="pro-secondary-desc">Opt in and get a heads-up four days before your weekly deadline, plus a final call the night it closes. Keeps the week from slipping. Included with Pro — also available as a $19 standalone add-on for base members.</p>
+        </div>
+      </div>
+      <div class="pro-secondary-card">
+        <span class="pro-secondary-icon">📈</span>
+        <div>
+          <div class="pro-secondary-name">Analytics Snapshot</div>
+          <p class="pro-secondary-desc">At the end of the round, upload your Instagram Insights screenshots. The platform extracts your metrics, compares them to where you started, and generates an honest AI narrative of your 90-day growth arc. Pro members get the visual chart.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pro-cta-row">
+      <a href="https://buy.stripe.com/00w4gzdq34IT1Ho0KBbo407" class="pro-cta-btn">Get SMAC Pro — Round 3 →</a>
+      <div class="pro-cta-note">One time · $65 introductory · June–August 2026<br>Everything in SMAC, plus every tool above</div>
     </div>
   </div>
 </section>
@@ -1719,6 +1917,14 @@
       <div class="faq-item">
         <div class="faq-q">What if I don't meet the posting requirements?</div>
         <div class="faq-a">Miss the weekly minimum two weeks in a row and you'll be removed from the Instagram Group Chat — that's the accountability part. But it's not the end. If you're willing to recommit to the requirements, you're welcome back anytime, no questions asked. And no matter what happens with the IG group, you keep full access to the community platform for the duration of your round. You paid for it, it's yours.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What is SMAC Pro, and is it right for me?</div>
+        <div class="faq-a">SMAC Pro is for founders who've already proven they'll show up and now want to get more from every post. It includes four AI tools built directly into the platform — caption writing, hook generation, weekly planning, and content performance analysis — plus SMS deadline reminders and an Analytics Snapshot at the end of the round. The posting requirements are higher (starting at 3/week and ramping to 5), so it's built for people who are ready to treat their content seriously, not just consistently. If you're brand new to posting and just want to build the habit first, start with SMAC base. You can always upgrade.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I add SMS reminders without upgrading to Pro?</div>
+        <div class="faq-a">Yes. SMS deadline reminders are included in SMAC Pro, but they're also available as a $19 standalone add-on for base members. You get a heads-up four days before your weekly deadline and a final call the night it closes. Opt in from inside the platform after registration.</div>
       </div>
     </div>
   </div>
