@@ -1100,6 +1100,113 @@
     .pro-secondary-row { grid-template-columns: 1fr; }
   }
 
+  /* ── ANALYTICS SNAPSHOT SECTION ── */
+  .analytics-snapshot {
+    padding: var(--section-pad);
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+  }
+  .analytics-snapshot .tag {
+    border-color: rgba(201,168,76,0.4);
+    color: var(--gold-dk);
+    background: rgba(201,168,76,0.08);
+  }
+  .analytics-snapshot h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 4.2vw, 60px);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    color: var(--ink);
+    line-height: 1.05;
+  }
+  .analytics-snapshot h2 em {
+    font-style: normal;
+    color: var(--gold-dk);
+  }
+  .snapshot-sub {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto 40px;
+  }
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 920px;
+    margin: 0 auto 32px;
+    text-align: left;
+  }
+  .snapshot-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    position: relative;
+  }
+  .snapshot-card-pro {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  .snapshot-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .snapshot-card-label-pro {
+    color: var(--gold-dk);
+  }
+  .snapshot-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.6px;
+    color: var(--ink);
+    margin-bottom: 18px;
+    line-height: 1.15;
+  }
+  .snapshot-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .snapshot-list li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink);
+    padding: 8px 0 8px 22px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .snapshot-list li:last-child {
+    border-bottom: none;
+  }
+  .snapshot-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--gold-dk);
+    font-weight: 600;
+  }
+  .snapshot-list li strong {
+    color: var(--gold-dk);
+    font-weight: 600;
+  }
+  .snapshot-footnote {
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+    max-width: 680px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  @media (max-width: 720px) {
+    .snapshot-grid { grid-template-columns: 1fr; }
+  }
+
   /* ── PRICING CARDS ── */
   .pricing {
     padding: var(--section-pad);
@@ -1826,14 +1933,14 @@
   <div class="container">
     <div class="tag">SMAC Pro — What's Inside</div>
     <h2>Built for Founders<br>Who <em>Show Up.</em></h2>
-    <p class="pro-features-sub">SMAC builds the habit. SMAC Pro makes every post count. Four AI tools, built into the platform, designed for the solopreneur who's done warming up.</p>
+    <p class="pro-features-sub">SMAC builds the habit. SMAC Pro makes every post count. Four AI tools built into the platform, all grounded in 2025/2026 Instagram growth research — designed for the solopreneur who's done warming up.</p>
 
     <div class="pro-tool-grid">
       <div class="pro-tool-card">
         <span class="pro-tool-icon">📊</span>
         <div class="pro-tool-name">Content Performance Analysis</div>
-        <p class="pro-tool-desc">Paste a caption and enter your engagement numbers. Or upload an Instagram Insights screenshot and let the AI read it directly. Get a scored breakdown of what worked, what to improve, and exactly what to do on your next post.</p>
-        <div class="pro-tool-detail">Scores saves + shares heaviest — the metrics that actually move the algorithm</div>
+        <p class="pro-tool-desc">Upload two screenshots side-by-side — your post and your Instagram Insights. The AI reads both, scores the post on saves and shares potential, rates how well your visual and caption align, then surfaces the patterns worth repeating and the ones worth experimenting with on future posts.</p>
+        <div class="pro-tool-detail">Visual/caption coherence score · Patterns to repeat + try · Grounded in 2026 IG research</div>
       </div>
       <div class="pro-tool-card">
         <span class="pro-tool-icon">✍️</span>
@@ -1863,19 +1970,47 @@
           <p class="pro-secondary-desc">Opt in and get a heads-up four days before your weekly deadline, plus a final call the night it closes. Keeps the week from slipping. Included with Pro — also available as a $19 standalone add-on for base members.</p>
         </div>
       </div>
-      <div class="pro-secondary-card">
-        <span class="pro-secondary-icon">📈</span>
-        <div>
-          <div class="pro-secondary-name">Analytics Snapshot</div>
-          <p class="pro-secondary-desc">At the end of the round, upload your Instagram Insights screenshots. The platform extracts your metrics, compares them to where you started, and generates an honest AI narrative of your 90-day growth arc. Pro members get the visual chart.</p>
-        </div>
-      </div>
     </div>
 
     <div class="pro-cta-row">
       <a href="https://buy.stripe.com/00w4gzdq34IT1Ho0KBbo407" class="pro-cta-btn">Get SMAC Pro — Round 3 →</a>
       <div class="pro-cta-note">One time · $65 introductory · June–August 2026<br>Everything in SMAC, plus every tool above</div>
     </div>
+  </div>
+</section>
+
+<!-- ANALYTICS SNAPSHOT — DEDICATED SECTION -->
+<section class="analytics-snapshot" id="analytics-snapshot">
+  <div class="container">
+    <div class="tag">For Every Member</div>
+    <h2>See What 90 Days<br>of <em>Showing Up</em> Actually Did.</h2>
+    <p class="snapshot-sub">At the start and end of every round, you'll upload your Instagram Insights screenshots. The platform extracts your metrics, compares them to where you started, and delivers an honest read on what 90 days of consistency actually moved.</p>
+
+    <div class="snapshot-grid">
+      <div class="snapshot-card">
+        <div class="snapshot-card-label">Every Member</div>
+        <h3>Your Growth, Read Honestly</h3>
+        <ul class="snapshot-list">
+          <li>AI-extracted metrics: views, reach, profile visits, follower change, interactions</li>
+          <li>A direct one-line narrative on your 90-day arc — no fluff, no sugarcoating</li>
+          <li>One personalized recommendation for what to focus on next round, grounded in 2025/2026 Instagram research</li>
+          <li>Your full submission count and growth history saved to your profile</li>
+        </ul>
+      </div>
+
+      <div class="snapshot-card snapshot-card-pro">
+        <div class="snapshot-card-label snapshot-card-label-pro">Pro Members</div>
+        <h3>Three Recommendations + Visual Chart</h3>
+        <ul class="snapshot-list">
+          <li>Everything in the base tier, plus:</li>
+          <li><strong>Three</strong> prioritized recommendations — one for each weak metric — with cited 2026 sources</li>
+          <li>Chart.js visualization showing your metric movement at a glance</li>
+          <li>Full source library: Mosseri's algorithm updates, Buffer studies, Meta's 2025 research</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="snapshot-footnote">The screenshot, the AI read, the recommendations — all of it grounded in vetted 2025/2026 Instagram growth research, not generic advice.</p>
   </div>
 </section>
 
