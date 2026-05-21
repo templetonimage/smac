@@ -10,12 +10,12 @@
   <link rel="manifest" href="site.webmanifest">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SMAC Round 3 — Now Open for Registration · Social Media Accountability Challenge</title>
-<meta name="description" content="Round 3 of the Social Media Accountability Challenge is open for registration — limited to 50 spots. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
+<meta name="description" content="Round 3 of the Social Media Accountability Challenge is open for registration — 30 of 50 spots remaining. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
   <!-- Open Graph / Social Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.joinsmac.com/">
   <meta property="og:title" content="SMAC 2026 — Social Media Accountability Challenge">
-  <meta property="og:description" content="Round 3 of the Social Media Accountability Challenge is open for registration — limited to 50 spots. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
+  <meta property="og:description" content="Round 3 of the Social Media Accountability Challenge is open for registration — 30 of 50 spots remaining. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
   <meta property="og:image" content="https://templetonimage.github.io/smac/smac-round3-preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SMAC 2026 — Social Media Accountability Challenge">
-  <meta name="twitter:description" content="Round 3 of the Social Media Accountability Challenge is open for registration — limited to 50 spots. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
+  <meta name="twitter:description" content="Round 3 of the Social Media Accountability Challenge is open for registration — 30 of 50 spots remaining. 90 days of structured posting, community accountability, and cash prizes. Now introducing SMAC Pro.">
   <meta name="twitter:image" content="https://templetonimage.github.io/smac/smac-round3-preview.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -385,9 +385,95 @@
   .nav-cta:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
   .nav-cta .nav-arrow { color: var(--gold-dk); }
 
+  /* ── SPOT COUNTDOWN COMPONENT ── */
+  /* Reusable: shows "X of Y spots remaining" with a progress bar. Populated by applySpotCountdowns() in script. */
+  .spot-countdown {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    background: rgba(201,168,76,0.10);
+    border: 1px solid rgba(201,168,76,0.35);
+    min-width: 280px;
+    max-width: 360px;
+    font-family: 'DM Mono', monospace;
+  }
+  .spot-countdown-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    font-weight: 600;
+  }
+  .spot-countdown-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 0 rgba(201,168,76,0.6);
+    animation: spotPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spotPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.6); }
+    50% { box-shadow: 0 0 0 6px rgba(201,168,76,0); }
+  }
+  .spot-countdown-num {
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 1.1em;
+  }
+  .spot-countdown-bar {
+    width: 100%;
+    height: 5px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .spot-countdown-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dk), var(--gold));
+    border-radius: 100px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+  /* Dark variant — for use on the dark Pro Features section, modals, or final CTA */
+  .spot-countdown-dark {
+    background: rgba(201,168,76,0.08);
+    border-color: rgba(201,168,76,0.4);
+  }
+  .spot-countdown-dark .spot-countdown-row {
+    color: var(--gold-lt);
+  }
+  .spot-countdown-dark .spot-countdown-num {
+    color: #fff;
+  }
+  .spot-countdown-dark .spot-countdown-bar {
+    background: rgba(255,255,255,0.10);
+  }
+  /* Sizing variant — large for CTAs */
+  .spot-countdown-lg {
+    min-width: 320px;
+    max-width: 420px;
+    padding: 14px 24px;
+  }
+  .spot-countdown-lg .spot-countdown-row { font-size: 13px; }
+  .spot-countdown-lg .spot-countdown-bar { height: 6px; }
+  /* Mobile */
+  @media (max-width: 640px) {
+    .spot-countdown { min-width: 240px; padding: 10px 14px; }
+    .spot-countdown-row { font-size: 11px; letter-spacing: 1px; }
+  }
+
   /* ── HERO ── */
   .hero {
-    padding: 120px 60px 100px;
+    padding: 56px 60px 100px;
     position: relative;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
@@ -1041,7 +1127,7 @@
   }
   .pro-secondary-row {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 48px;
   }
@@ -1144,10 +1230,19 @@
     border-radius: 6px;
     padding: 32px 28px;
     position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .snapshot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    border-color: rgba(201,168,76,0.5);
   }
   .snapshot-card-pro {
     border-color: var(--gold);
     box-shadow: 0 0 0 2px rgba(201,168,76,0.15);
+  }
+  .snapshot-card-pro:hover {
+    box-shadow: 0 0 0 2px rgba(201,168,76,0.25), 0 12px 28px rgba(201,168,76,0.15);
   }
   .snapshot-card-label {
     font-family: 'DM Mono', monospace;
@@ -1458,7 +1553,7 @@
     .nav-links { display: none; }
     .nav-mobile-right { display: flex; }
     .hero, .stakes, .cta-final, footer { padding-left: 24px; padding-right: 24px; }
-    .hero { padding-top: 72px; padding-bottom: 64px; }
+    .hero { padding-top: 40px; padding-bottom: 64px; }
     .hero::after { display: none; }
     .problem, .guide, .plan, .months, .proof, .objections, .pro-features { padding: 64px 24px; }
     .problem-grid { grid-template-columns: 1fr; }
@@ -1511,11 +1606,13 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
+    <div style="margin-bottom: 24px;">
+      <div class="spot-countdown"></div>
+    </div>
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
       <div class="hero-eyebrow-text">Round 3 Starts June 1, 2026 · Now Introducing SMAC Pro</div>
     </div>
-    <div class="price-pill"><strong>Round 3 — Open for Registration · Limited to 50</strong></div>
     <h1>Stop Starting Over.<br><em>Start Showing Up.</em></h1>
     <p class="hero-sub">
       The <strong>Social Media Accountability Challenge 2026</strong> turns sporadic posting into a real, consistent habit inside a supportive community of fellow creatives — in just 90 days. Built for solo founders who know they should be showing up online but keep falling off by themselves.
@@ -1880,14 +1977,17 @@
   <div class="container">
     <div class="tag">Choose Your Path</div>
     <h2>Simple, Honest Pricing</h2>
-    <p class="pricing-sub">Round 3 is open for registration — and limited to 50 spots. Choose your path below: SMAC to build the habit, or new SMAC Pro to make it count.</p>
+    <p class="pricing-sub">Round 3 is open — 30 of 50 spots remaining. Choose your path below: SMAC to build the habit, or new SMAC Pro to make it count.</p>
+    <div style="display:flex; justify-content:center; margin-bottom:36px;">
+      <div class="spot-countdown spot-countdown-lg"></div>
+    </div>
     <div class="pricing-grid">
       <div class="pricing-card" style="position:relative;">
         <div class="pricing-label">SMAC — Round 3</div>
         <div class="pricing-amount"><sup>$</sup>45</div>
         <div class="pricing-per-month">$15.00 / mo</div>
         <div class="pricing-period">One time · June–August 2026</div>
-        <div class="limited-tag"><strong>Open for Registration · Limited to 50</strong></div>
+        <div class="limited-tag"><strong>Open for Registration · 30 of 50 Left</strong></div>
         <p class="pricing-desc">Build the habit. Show up consistently. Three months of accountability, community, and cash prize eligibility for less than one night out.</p>
         <ul class="pricing-features">
           <li>90 days of structured accountability</li>
@@ -2069,8 +2169,11 @@
 <section class="cta-final" id="join">
   <div class="container">
     <h2>Your Audience<br>Is <em>Waiting.</em></h2>
-    <p>Round 3 is open for registration — and limited to 50 spots. June through August 2026. Lock in your spot before it fills.</p>
-    <div class="cta-price-tag">Round 3 · June–August 2026 · 90 Days · Limited to 50</div>
+    <p>Round 3 is open for registration — 30 of 50 spots remaining. June through August 2026. Lock in your spot before it fills.</p>
+    <div style="display:flex; justify-content:center; margin: 14px 0 24px;">
+      <div class="spot-countdown spot-countdown-dark spot-countdown-lg"></div>
+    </div>
+    <div class="cta-price-tag">Round 3 · June–August 2026 · 90 Days · 30 of 50 Left</div>
     <!-- ✅ REPLACE href BELOW WITH YOUR LIVE SMAC ROUND 3 STRIPE LINK -->
     <a href="https://buy.stripe.com/28EaEX2LpcblfyefFvbo409" class="btn-primary" style="cursor:pointer; text-decoration:none;">Register for Round 3</a>
     <div class="cta-fine" style="margin-top:16px; color: var(--gold-dk); font-family: 'DM Mono', monospace; letter-spacing: 1px;"><a href="https://buy.stripe.com/00w4gzdq34IT1Ho0KBbo407" style="color:var(--gold-dk); text-decoration:none; border-bottom:1.5px solid var(--gold-dk); padding-bottom:1px;">Now Introducing SMAC Pro</a></div>
@@ -2129,6 +2232,9 @@
       <div class="wl-eyebrow">Round 3 · June–August 2026</div>
       <h3 id="wlTitle">Join the Waitlist</h3>
       <p>Be first in line when Round 3 opens. We'll email you as soon as enrollment goes live.</p>
+      <div style="display:flex; justify-content:center; margin-bottom:18px;">
+        <div class="spot-countdown"></div>
+      </div>
       <input class="wl-field" type="text" id="wlName" placeholder="Your name" required autocomplete="name">
       <input class="wl-field" type="email" id="wlEmail" placeholder="Your email address" required autocomplete="email">
       <button class="wl-submit" id="wlSubmitBtn" onclick="submitWaitlist()">Reserve My Spot →</button>
@@ -2146,11 +2252,14 @@
 <div class="r3-overlay" id="r3Overlay" onclick="r3HandleOverlayClick(event)">
   <div class="r3-modal" role="dialog" aria-modal="true" aria-labelledby="r3Title">
     <button class="r3-close" onclick="r3Dismiss(false)" aria-label="Close">&times;</button>
-    <div class="r3-eyebrow">Enrollment Open · Limited to 50 Spots</div>
+    <div class="r3-eyebrow">Enrollment Open · 30 of 50 Spots Remaining</div>
     <h3 id="r3Title">Round 3 Starts <span class="gold">June 1</span></h3>
     <p class="r3-sub">90 days of structured posting, accountability, and community. New members welcome, past rounds can renew.</p>
 
     <div id="r3LiveBlock">
+      <div style="display:flex; justify-content:center; margin-bottom:18px;">
+        <div class="spot-countdown"></div>
+      </div>
       <div class="r3-countdown-label">Registration closes in</div>
       <div class="r3-timer" id="r3Timer">
         <div class="r3-unit"><span class="r3-num" id="r3Days">--</span><div class="r3-unit-label">Days</div></div>
@@ -2174,6 +2283,27 @@
 </div>
 
 <script>
+  // ── SPOT COUNTDOWN ──
+  // Single source of truth. To update remaining spots, change SPOTS_LEFT below.
+  // Total seats stays at 50 for SMAC. When spots fill, just decrement SPOTS_LEFT.
+  var SPOTS_LEFT  = 30;
+  var SPOTS_TOTAL = 50;
+
+  function applySpotCountdowns() {
+    var claimed = SPOTS_TOTAL - SPOTS_LEFT;
+    var pct = Math.max(0, Math.min(100, Math.round((claimed / SPOTS_TOTAL) * 100)));
+    document.querySelectorAll('.spot-countdown').forEach(function(el) {
+      el.innerHTML =
+        '<div class="spot-countdown-row">' +
+          '<span class="spot-countdown-dot"></span>' +
+          '<span><span class="spot-countdown-num">' + SPOTS_LEFT + '</span> of ' + SPOTS_TOTAL + ' Spots Remaining</span>' +
+        '</div>' +
+        '<div class="spot-countdown-bar"><div class="spot-countdown-fill" style="width:' + pct + '%;"></div></div>';
+    });
+  }
+  // Run immediately for any present countdowns
+  applySpotCountdowns();
+
   document.querySelectorAll('.faq-q').forEach(function(q) {
     q.addEventListener('click', function() {
       var item = this.closest('.faq-item');
