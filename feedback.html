@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>SMAC Round 2 Feedback</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --border:  #e0dbd2;
+    --gold-dk: #9e7c2e;
+    --gold-lt: #e8c97a;
+    --gold:    #c9a84c;
+    --ink:     #1a1a1a;
+    --muted:   #6b6560;
+    --offwhite:#f2f0eb;
+    --white:   #faf9f7;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  /* HEADER */
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-dk);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(46px, 11vw, 76px);
+    line-height: 0.92;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  .intro {
+    font-size: 17px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 8px;
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+  .divider { height: 1px; background: var(--border); margin: 44px 0; }
+
+  /* SECTION */
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--ink);
+    border-left: 4px solid var(--gold);
+    padding: 13px 20px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+  .q { margin-bottom: 34px; }
+  .q:last-child { margin-bottom: 0; }
+  label.qlabel {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 14px;
+    line-height: 1.45;
+  }
+  .req { color: var(--gold-dk); font-weight: 600; }
+  .hint { display: block; font-weight: 300; color: var(--muted); font-size: 14px; margin-top: 3px; }
+
+  /* SCALE PILLS (NPS + ratings + choice) */
+  .scale { display: flex; flex-wrap: wrap; gap: 8px; }
+  .scale input { position: absolute; opacity: 0; pointer-events: none; }
+  .scale label {
+    cursor: pointer;
+    min-width: 44px;
+    padding: 11px 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .scale label:hover { border-color: var(--gold); }
+  .scale input:checked + label {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+  .scale.nps label { min-width: 40px; padding: 10px 0; flex: 1; }
+  .scale-ends {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .choice label { min-width: auto; padding: 11px 20px; }
+
+  /* TEXT INPUTS */
+  textarea, input[type=text], input[type=email] {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 13px 14px;
+    transition: border-color 0.15s;
+  }
+  textarea { min-height: 92px; resize: vertical; line-height: 1.55; }
+  textarea:focus, input:focus { outline: none; border-color: var(--gold); }
+  textarea::placeholder, input::placeholder { color: #b6b0a8; }
+
+  /* TESTIMONIAL */
+  .testi-card {
+    background: var(--offwhite);
+    border-radius: 4px;
+    border-top: 4px solid var(--gold);
+    padding: 28px 26px;
+  }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 520px) { .grid2 { grid-template-columns: 1fr; } }
+  .consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--gold-dk); flex-shrink: 0; cursor: pointer; }
+  .consent span { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%;
+    padding: 17px;
+    background: var(--ink);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 40px;
+  }
+  .submit-btn:hover { background: var(--gold-dk); }
+  .submit-btn:disabled { background: #c0bbb5; cursor: not-allowed; }
+  .err { color: #c0392b; font-size: 14px; margin-top: 14px; text-align: center; display: none; }
+
+  /* THANK YOU */
+  .thanks { display: none; text-align: center; padding: 40px 0; }
+  .thanks.show { display: block; }
+  .thanks .eyebrow { text-align: center; }
+  .thanks h1 { margin-bottom: 18px; }
+  .thanks p { font-size: 17px; color: var(--muted); font-weight: 300; max-width: 460px; margin: 0 auto; line-height: 1.7; }
+  .form-wrap.hide { display: none; }
+
+  /* ===== SITE NAV (matches joinsmac.com) ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(250,249,247,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--ink);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: #ffffff !important;
+    padding: 10px 22px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+    border: 1.5px solid var(--ink);
+  }
+  .nav-cta:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+  .nav-cta .nav-arrow { color: var(--gold-dk); }
+
+  /* ===== SITE FOOTER (matches joinsmac.com) ===== */
+  footer {
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--muted);
+  }
+  .footer-logo span { color: var(--gold); }
+  footer p { font-size: 13px; color: var(--muted); }
+  footer a { color: var(--muted); text-underline-offset: 3px; }
+
+  /* ===== HAMBURGER + MOBILE MENU ===== */
+  .nav-mobile-right { display: none; align-items: center; gap: 10px; }
+  .nav-login-mobile {
+    font-size: 13px;
+    color: var(--gold-dk);
+    text-decoration: none;
+    font-weight: 500;
+    border: 1.5px solid var(--gold);
+    padding: 7px 13px;
+    border-radius: 3px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-login-mobile:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: rgba(250,249,247,0.98);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: 20px 24px 28px;
+    gap: 4px;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    z-index: 199;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 15px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--ink); }
+  .mobile-menu .mobile-join {
+    margin-top: 12px;
+    background: var(--ink);
+    color: #ffffff;
+    padding: 14px;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    border-bottom: none;
+  }
+  .mobile-menu .mobile-join:hover { background: var(--gold-dk); color: #fff; }
+
+  /* ===== DISCLAIMER NOTE ===== */
+  .disclaimer {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-top: 16px;
+    padding: 13px 16px;
+    background: var(--offwhite);
+    border-left: 3px solid var(--gold);
+    border-radius: 3px;
+    max-width: 560px;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-mobile-right { display: flex; }
+    footer { padding: 32px 24px; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== SITE NAV (matches joinsmac.com) ===== -->
+<nav>
+  <div class="nav-logo">SMAC <span>2026</span></div>
+  <div class="nav-links">
+    <a href="https://joinsmac.com/#how-it-works">How It Works</a>
+    <a href="https://joinsmac.com/#compare">Compare</a>
+    <a href="https://joinsmac.com/#pro-features">Pro</a>
+    <a href="https://joinsmac.com/#pricing">Pricing</a>
+    <a href="https://joinsmac.com/#faq">FAQ</a>
+    <a href="https://app.joinsmac.com" style="font-size:14px; color:var(--gold-dk); text-decoration:none; font-weight:500; border:1.5px solid var(--gold); padding:8px 16px; border-radius:3px; transition:color 0.2s, border-color 0.2s;" onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)';this.style.color='var(--ink)'" onmouseout="this.style.background='transparent';this.style.borderColor='var(--gold)';this.style.color='var(--gold-dk)'">Member Login</a>
+    <a href="https://buy.stripe.com/28EaEX2LpcblfyefFvbo409" class="nav-cta" style="cursor:pointer; text-decoration:none;">Register for Round 3 <span class="nav-arrow">&rarr;</span></a>
+  </div>
+  <div class="nav-mobile-right">
+    <a href="https://app.joinsmac.com" class="nav-login-mobile">Member Login</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://joinsmac.com/#how-it-works" class="mobile-nav-link">How It Works</a>
+  <a href="https://joinsmac.com/#compare" class="mobile-nav-link">Compare</a>
+  <a href="https://joinsmac.com/#pro-features" class="mobile-nav-link">Pro</a>
+  <a href="https://joinsmac.com/#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="https://joinsmac.com/#faq" class="mobile-nav-link">FAQ</a>
+  <a href="https://buy.stripe.com/28EaEX2LpcblfyefFvbo409" class="mobile-join" style="cursor:pointer; text-decoration:none;">Register for Round 3 &rarr;</a>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ FORM ============ -->
+  <div class="form-wrap" id="formWrap">
+    <div class="eyebrow">SMAC // Round 2 Feedback</div>
+    <h1>How did <em>90 days</em> go?</h1>
+    <p class="intro">You finished the round. Now help shape the next one. <strong>Open answers are reviewed in aggregate, not attributed</strong>, so be honest. It takes about 4 minutes.</p>
+    <p class="disclaimer">Note: SMAC is a consistency platform built to help you develop a posting habit alongside a community. It does not guarantee statistical results, audience growth, or social media success, as consistency is just one piece of the social media equation.</p>
+
+    <div class="divider"></div>
+
+    <!-- RATE THE ROUND -->
+    <div class="section-label">01 / Rate How Helpful</div>
+    <div class="q">
+      <label class="qlabel">Overall experience</label>
+      <div class="scale" data-rating="rating_overall"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">Weekly posting / accountability mechanic</label>
+      <div class="scale" data-rating="rating_accountability"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">Zoom sessions</label>
+      <div class="scale" data-rating="rating_zooms" data-na="true"></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- COMMUNITY -->
+    <div class="section-label">02 / The Community</div>
+    <div class="q">
+      <label class="qlabel">Being part of a community helped me stay consistent</label>
+      <div class="scale" data-rating="consistency_community"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">The leaderboard / competitiveness kept me invested</label>
+      <div class="scale" data-rating="competitiveness"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">Would you have shown up as consistently doing this alone?</label>
+      <div class="scale choice" id="aloneChoice"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">What did the community give you that going solo would not have?</label>
+      <textarea name="alone_open" placeholder="Accountability, motivation, ideas, connection..."></textarea>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- REFLECTION -->
+    <div class="section-label">03 / Your Reflection</div>
+    <div class="q">
+      <label class="qlabel">Biggest win or result from this round</label>
+      <textarea name="win" placeholder="A number, a habit, a client, a mindset shift..."></textarea>
+    </div>
+    <div class="q">
+      <label class="qlabel">What should we improve for next round?</label>
+      <textarea name="improve" placeholder="Be specific. This is the most useful answer you can give."></textarea>
+    </div>
+    <div class="q">
+      <label class="qlabel">What almost made you quit?
+        <span class="hint">The friction point. No wrong answers here.</span>
+      </label>
+      <textarea name="friction" placeholder=""></textarea>
+    </div>
+    <div class="q">
+      <label class="qlabel">Are you registering for SMAC Round 3?</label>
+      <div class="scale choice" id="r3Choice"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">Why or why not?</label>
+      <textarea name="r3_reason" placeholder=""></textarea>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PRO -->
+    <div class="section-label">04 / SMAC Pro</div>
+    <div class="q">
+      <label class="qlabel">Interested in SMAC Pro for Round 3?</label>
+      <div class="scale choice" id="proChoice"></div>
+    </div>
+    <div class="q">
+      <label class="qlabel">What would make it a yes?</label>
+      <textarea name="proBlocker" placeholder="Price, features, timing, something else..."></textarea>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- THE NUMBER -->
+    <div class="section-label">05 / The Number</div>
+    <div class="q">
+      <label class="qlabel">How likely are you to recommend SMAC to another creator? <span class="req">*</span></label>
+      <div class="scale nps" id="npsScale"></div>
+      <div class="scale-ends"><span>Not likely</span><span>Extremely likely</span></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TESTIMONIAL -->
+    <div class="section-label">06 / Testimonial (optional)</div>
+    <div class="testi-card">
+      <div class="q">
+        <label class="qlabel">In your words, what would you tell a creator on the fence about SMAC?</label>
+        <textarea name="testimonialText" placeholder="One or two sentences is perfect."></textarea>
+      </div>
+      <div class="grid2">
+        <div>
+          <label class="qlabel" style="font-size:14px;">Name</label>
+          <input type="text" name="name" placeholder="First + last">
+        </div>
+        <div>
+          <label class="qlabel" style="font-size:14px;">Email</label>
+          <input type="email" name="email" placeholder="In case we follow up">
+        </div>
+      </div>
+      <label class="consent">
+        <input type="checkbox" id="consent">
+        <span>I'm okay with SMAC sharing this testimonial publicly (website, social, marketing), with my first name.</span>
+      </label>
+    </div>
+
+    <button class="submit-btn" id="submitBtn">Submit Feedback</button>
+    <div class="err" id="errMsg">Something went wrong. Please try again, or email nate@templetonimage.com.</div>
+  </div>
+
+  <!-- ============ THANK YOU ============ -->
+  <div class="thanks" id="thanks">
+    <div class="eyebrow">SMAC // Received</div>
+    <h1>Thank <em>you</em>.</h1>
+    <p>Your feedback directly shapes Round 3. If you left a testimonial, you might just see it out in the wild. See you in the next round.</p>
+  </div>
+
+</div>
+
+<!-- ===== SITE FOOTER (matches joinsmac.com) ===== -->
+<footer>
+  <div style="margin: 0 auto 28px auto; display: inline-block; border: 1.5px solid var(--ink); background: #ffffff; padding: 10px 24px; border-radius: 3px;">
+    <a href="https://theaccountabilityco.com/" style="text-decoration: none;" onmouseover="this.querySelector('p').style.color='#c9a84c';this.parentElement.style.borderColor='#c9a84c'" onmouseout="this.querySelector('p').style.color='var(--ink)';this.parentElement.style.borderColor='var(--ink)'"><p style="color: var(--ink); font-size: 13px; margin: 0; font-family: 'DM Mono', monospace; letter-spacing: 0.5px; transition: color 0.2s ease;"><strong>Accountability Challenge Co.</strong> &rarr;</p></a>
+  </div>
+  <div class="footer-logo">SMAC<span>.</span></div>
+  <p>Social Media Accountability Challenge &middot; Round 3 &middot; 2026</p>
+  <p style="margin-top:12px;">
+    <a href="https://joinsmac.com/contact.html" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.5px;">Contact</a>
+    <span style="color:var(--border); margin:0 10px;">&middot;</span>
+    <a href="https://joinsmac.com/privacy" style="font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.5px;">Privacy Policy</a>
+  </p>
+</footer>
+
+<script>
+  // ====== CONFIG: paste your Make.com webhook URL between the quotes ======
+  const WEBHOOK_URL = "https://hook.us2.make.com/jxjv8gq79n5hneejvog7p6uexqjq6n1t";
+  const ROUND = "R2";
+  // =======================================================================
+
+  // Mobile nav toggle (matches joinsmac.com)
+  (function () {
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      document.querySelectorAll('.mobile-nav-link, .mobile-join').forEach(function (link) {
+        link.addEventListener('click', function () {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  })();
+
+  // Build NPS 0-10
+  const npsScale = document.getElementById('npsScale');
+  for (let i = 0; i <= 10; i++) {
+    npsScale.insertAdjacentHTML('beforeend',
+      `<input type="radio" name="nps" id="nps${i}" value="${i}"><label for="nps${i}">${i}</label>`);
+  }
+
+  // Build 1-5 rating scales (+ optional N/A)
+  document.querySelectorAll('[data-rating]').forEach(el => {
+    const key = el.dataset.rating;
+    for (let i = 1; i <= 5; i++) {
+      el.insertAdjacentHTML('beforeend',
+        `<input type="radio" name="${key}" id="${key}${i}" value="${i}"><label for="${key}${i}">${i}</label>`);
+    }
+    if (el.dataset.na === "true") {
+      el.insertAdjacentHTML('beforeend',
+        `<input type="radio" name="${key}" id="${key}na" value="N/A"><label for="${key}na">Did not attend</label>`);
+    }
+  });
+
+  // Build choice groups
+  function buildChoice(elId, name, opts) {
+    const el = document.getElementById(elId);
+    opts.forEach((o, idx) => {
+      el.insertAdjacentHTML('beforeend',
+        `<input type="radio" name="${name}" id="${name}${idx}" value="${o}"><label for="${name}${idx}">${o}</label>`);
+    });
+  }
+  buildChoice('aloneChoice', 'alone_comparison', ['Yes', 'Maybe', 'No']);
+  buildChoice('r3Choice', 'r3_register', ['Yes', 'Not sure', 'No']);
+  buildChoice('proChoice', 'proInterest', ['Yes', 'Maybe', 'No']);
+
+  // Helpers
+  function val(name) {
+    const checked = document.querySelector(`[name="${name}"]:checked`);
+    if (checked) return checked.value;
+    const field = document.querySelector(`[name="${name}"]`);
+    return field ? field.value.trim() : "";
+  }
+
+  const btn = document.getElementById('submitBtn');
+  const errMsg = document.getElementById('errMsg');
+
+  btn.addEventListener('click', async () => {
+    errMsg.style.display = 'none';
+
+    // Only NPS is required
+    if (!document.querySelector('[name="nps"]:checked')) {
+      errMsg.textContent = 'Please answer the first question (0 to 10) before submitting.';
+      errMsg.style.display = 'block';
+      document.getElementById('npsScale').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const payload = {
+      submittedAt: new Date().toISOString(),
+      round: ROUND,
+      name: val('name'),
+      email: val('email'),
+      nps: val('nps'),
+      rating_overall: val('rating_overall'),
+      rating_accountability: val('rating_accountability'),
+      rating_zooms: val('rating_zooms'),
+      consistency_community: val('consistency_community'),
+      competitiveness: val('competitiveness'),
+      alone_comparison: val('alone_comparison'),
+      alone_open: val('alone_open'),
+      win: val('win'),
+      improve: val('improve'),
+      friction: val('friction'),
+      r3_register: val('r3_register'),
+      r3_reason: val('r3_reason'),
+      proInterest: val('proInterest'),
+      proBlocker: val('proBlocker'),
+      testimonialConsent: document.getElementById('consent').checked ? "Yes" : "No",
+      testimonialText: val('testimonialText')
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Bad response');
+      document.getElementById('formWrap').classList.add('hide');
+      document.getElementById('thanks').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'Submit Feedback';
+      errMsg.textContent = 'Something went wrong. Please try again, or email nate@templetonimage.com.';
+      errMsg.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
