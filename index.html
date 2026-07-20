@@ -240,14 +240,18 @@
     .cred-card p { font-size: .88rem; color: var(--ink-muted); line-height: 1.6; }
 
     /* MONTHS */
-    .month-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
-    .month-card { background: var(--cream-white); border: 1px solid var(--light-border); border-radius: 12px; padding: 28px 24px; box-shadow: 0 4px 16px rgba(23,20,15,.05); transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
-    .month-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(23,20,15,.08); }
-    .month-label { font-family: 'Space Mono', monospace; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 10px; }
-    .month-card h4 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 10px; }
-    .month-card p { font-size: .88rem; color: var(--ink-muted); line-height: 1.65; margin-bottom: 16px; }
-    .month-req { font-family: 'Space Mono', monospace; font-size: .78rem; color: var(--ink); background: var(--accent-bg); border-radius: 8px; padding: 8px 12px; display: inline-block; }
+    .month-grid { display: flex; flex-direction: column; gap: 2px; max-width: 780px; margin: 0 auto; }
+    .month-card { display: grid; grid-template-columns: 140px 1fr auto; gap: 24px; align-items: center; background: var(--cream-white); border: 1px solid var(--light-border); border-radius: 12px; padding: 22px 28px; box-shadow: 0 4px 16px rgba(23,20,15,.05); transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+    .month-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(23,20,15,.08); }
+    .month-label { font-family: 'Space Mono', monospace; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-dim); line-height: 1.5; }
+    .month-card h4 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: 4px; }
+    .month-card p { font-size: .86rem; color: var(--ink-muted); line-height: 1.55; margin: 0; }
+    .month-req { font-family: 'Space Mono', monospace; font-size: .78rem; color: var(--ink); background: var(--accent-bg); border-radius: 8px; padding: 8px 14px; white-space: nowrap; }
     .month-req strong { color: var(--accent-dim); }
+    @media (max-width: 680px) {
+      .month-card { grid-template-columns: 1fr; text-align: left; gap: 10px; }
+      .month-req { justify-self: start; }
+    }
 
     /* TESTIMONIALS / PROOF */
     .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto 48px; }
@@ -644,21 +648,27 @@
     </div>
     <div class="month-grid">
       <div class="month-card">
-        <div class="month-label">Month 1 · September</div>
-        <h4>Build the Habit</h4>
-        <p>Ease back in. Get oriented, reconnect with the community, and find your rhythm. One post a week is the bar — clear it every time.</p>
+        <div class="month-label">Month 1<br>September</div>
+        <div>
+          <h4>Build the Habit</h4>
+          <p>Ease back in. Get oriented, reconnect with the community, and find your rhythm. One post a week is the bar — clear it every time.</p>
+        </div>
         <div class="month-req">Min: <strong>1 post / week</strong></div>
       </div>
       <div class="month-card">
-        <div class="month-label">Month 2 · October</div>
-        <h4>Pick Up the Pace</h4>
-        <p>Double your output. Start learning what your audience responds to and refine your content mix.</p>
+        <div class="month-label">Month 2<br>October</div>
+        <div>
+          <h4>Pick Up the Pace</h4>
+          <p>Double your output. Start learning what your audience responds to and refine your content mix.</p>
+        </div>
         <div class="month-req">Min: <strong>2 posts / week</strong></div>
       </div>
       <div class="month-card">
-        <div class="month-label">Month 3 · November</div>
-        <h4>Full Send</h4>
-        <p>This is where compound consistency kicks in. Finish strong — All-Star status is on the line.</p>
+        <div class="month-label">Month 3<br>November</div>
+        <div>
+          <h4>Full Send</h4>
+          <p>This is where compound consistency kicks in. Finish strong — All-Star status is on the line.</p>
+        </div>
         <div class="month-req">Min: <strong>3 posts / week</strong></div>
       </div>
     </div>
@@ -666,13 +676,13 @@
 </section>
 
 <!-- SOCIAL PROOF -->
-<section class="section" id="results" style="background: var(--cream-white);">
+<section class="section" id="results" style="background: var(--black);">
   <div class="container">
     <div class="section-header">
       <span class="tag">Round 2 Results</span>
-      <h2>They Showed Up.<br>So Can You.</h2>
+      <h2 style="color: var(--white);">They Showed Up.<br>So Can You.</h2>
     </div>
-    <div class="testimonial-grid">
+    <div class="testimonial-grid" style="margin-bottom: 0;">
       <div class="testimonial-card">
         <div class="t-quote">"</div>
         <p>The group pushed me and motivated me to create content. Many people think I create content but we all need a push and the group is it!</p>
@@ -690,24 +700,6 @@
         <p>My reach went over 100K every 30 days.</p>
         <div class="t-author">Widgy Normil</div>
         <div class="t-role">SMAC Round 1 Member</div>
-      </div>
-    </div>
-    <div class="stat-bar-inner">
-      <div class="stat-item">
-        <span class="stat-num count-num" data-count="50" data-suffix="+">0+</span>
-        <div class="stat-label">Round 2 Members</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">3mo</span>
-        <div class="stat-label">Of Accountability</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">$400</span>
-        <div class="stat-label">Cash Prizes Given Away Since Round 1</div>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num count-num" data-count="2000" data-suffix="+">0+</span>
-        <div class="stat-label">Posts Verified</div>
       </div>
     </div>
   </div>
