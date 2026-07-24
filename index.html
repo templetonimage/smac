@@ -423,24 +423,37 @@
     .r3-dismiss:hover { color: var(--ink); }
     .r3-closed-msg { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--ink); margin: 18px 0; }
     @media (max-width: 480px) { .r3-modal { padding: 40px 26px 32px; } .r3-modal h3 { font-size: 1.5rem; } .r3-unit { min-width: 58px; } .r3-num { font-size: 1.4rem; } }
+
+    /* COOKIE BANNER */
+    .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--black); border-top: 1px solid var(--border); padding: 18px 24px; display: none; }
+    .cookie-banner.show { display: flex; }
+    .cookie-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .cookie-text { font-size: .85rem; color: var(--text); font-weight: 300; max-width: 620px; }
+    .cookie-text a { color: var(--accent); text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+    .cookie-btn { font-family: 'Space Mono', monospace; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; padding: 9px 18px; border-radius: 8px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); }
+    .cookie-btn.accept { background: var(--accent); color: var(--black); border-color: var(--accent); font-weight: 600; }
+    .cookie-btn:hover { color: var(--white); border-color: var(--muted); }
+    .cookie-btn.accept:hover { color: var(--black); opacity: .9; }
   </style>
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel: consent-gated, does NOT fire until the cookie banner is accepted (or a prior "accepted" choice is found in localStorage). See consent script near the closing </body> tag. -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1676740660054343');
 var BRAND = 'SMAC';
-fbq('track', 'PageView', { content_name: BRAND });
+function loadMetaPixel() {
+  if (window.fbq) return;
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1676740660054343');
+  fbq('track', 'PageView', { content_name: BRAND });
+}
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1676740660054343&ev=PageView&noscript=1"
-/></noscript>
+<!-- No noscript pixel: without JS there's no way to gate on consent, so no-JS visitors are not tracked. -->
 <!-- End Meta Pixel Code -->
 </head>
 <body>
@@ -1054,12 +1067,25 @@ src="https://www.facebook.com/tr?id=1676740660054343&ev=PageView&noscript=1"
   <p style="margin-top:12px;">
     <a href="https://joinsmac.com/contact.html">Contact</a>
     <span style="color:var(--border); margin:0 10px;">·</span>
-    <a href="/privacy">Privacy Policy</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <span style="color:var(--border); margin:0 10px;">·</span>
+    <a href="cookies.html">Cookie Policy</a>
   </p>
   <div class="sister-badge">
     Also by Nate: <a href="https://www.joinwac.com">WAC, Website Accountability Challenge</a> &nbsp;|&nbsp; <a href="https://jointheaac.com">AAC, Ad Accountability Challenge →</a>
   </div>
 </footer>
+
+<!-- COOKIE CONSENT BANNER -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-inner">
+    <p class="cookie-text">We use cookies and the Meta Pixel to run this site and measure ad performance. See our <a href="cookies.html">Cookie Policy</a> for details.</p>
+    <div class="cookie-actions">
+      <button class="cookie-btn" id="cookieDecline">Decline</button>
+      <button class="cookie-btn accept" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+</div>
 
 <script>
   // Hamburger menu
@@ -1077,6 +1103,27 @@ src="https://www.facebook.com/tr?id=1676740660054343&ev=PageView&noscript=1"
       hamburger.setAttribute('aria-expanded', 'false');
     });
   });
+
+  // Cookie consent banner (gates the Meta Pixel)
+  (function () {
+    var banner = document.getElementById('cookieBanner');
+    var KEY = 'smac_cookie_consent';
+    var consent = localStorage.getItem(KEY);
+    if (consent === 'accepted') {
+      loadMetaPixel();
+    } else if (!consent) {
+      banner.classList.add('show');
+    }
+    document.getElementById('cookieAccept').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'accepted');
+      loadMetaPixel();
+      banner.classList.remove('show');
+    });
+    document.getElementById('cookieDecline').addEventListener('click', function() {
+      localStorage.setItem(KEY, 'declined');
+      banner.classList.remove('show');
+    });
+  })();
 
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(function(q) {
