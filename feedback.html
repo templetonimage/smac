@@ -504,6 +504,11 @@
       </label>
     </div>
 
+    <!-- Spam trap: hidden from people, bots fill it in -->
+    <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+      <label for="website">Leave this empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
     <button class="submit-btn" id="submitBtn">Submit Feedback</button>
     <div class="err" id="errMsg">Something went wrong. Please try again, or email nate@templetonimage.com.</div>
   </div>
@@ -597,6 +602,8 @@
 
   const btn = document.getElementById('submitBtn');
   const errMsg = document.getElementById('errMsg');
+  const PAGE_LOADED_AT = Date.now();
+  let sentOnce = false;
 
   btn.addEventListener('click', async () => {
     errMsg.style.display = 'none';
@@ -608,6 +615,14 @@
       document.getElementById('npsScale').scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
+
+    // Spam guard: bots fill the hidden field or submit within seconds; pretend success, send nothing.
+    const showThanks = () => {
+      document.getElementById('formWrap').classList.add('hide');
+      document.getElementById('thanks').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    if (val('website') || Date.now() - PAGE_LOADED_AT < 5000 || sentOnce) { showThanks(); return; }
 
     const payload = {
       submittedAt: new Date().toISOString(),
@@ -643,9 +658,8 @@
         body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error('Bad response');
-      document.getElementById('formWrap').classList.add('hide');
-      document.getElementById('thanks').classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      sentOnce = true;
+      showThanks();
     } catch (e) {
       btn.disabled = false;
       btn.textContent = 'Submit Feedback';
